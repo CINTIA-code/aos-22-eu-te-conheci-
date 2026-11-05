@@ -1,151 +1,165 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Aos 22, eu te conheci</title>
-  <meta name="description" content="Uma história contada por quem a viveu.">
+  <meta name="theme-color" content="#281c30">
+  <title>Aos 22, eu te conheci.</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
 </head>
 
 <body>
 
   <header class="topbar">
-    <a href="#inicio" class="brand">entre páginas ✳</a>
-    <span>um espaço particular</span>
+    <a href="#inicio" class="brand">entre páginas <span>✳</span></a>
+    <span class="topbar-note">um livro de memórias</span>
   </header>
 
-  <main class="container" id="inicio">
+  <main>
 
-    <section class="cover">
-      <p class="eyebrow">UM LIVRO DIGITAL · MEMÓRIAS</p>
+    <section class="cover" id="inicio">
+      <div class="cover-copy">
+        <span class="eyebrow">UMA HISTÓRIA CONTADA POR QUEM A VIVEU</span>
+        <h1>Aos 22,<br>eu te conheci.</h1>
+        <p class="cover-description">
+          Algumas pessoas se tornam parte das nossas histórias.
+          Outras permanecem nos detalhes.
+        </p>
+        <button class="primary-button" id="startReading">
+          Começar a leitura ↗
+        </button>
+        <p class="cover-date">31 de dezembro de 2021</p>
+      </div>
 
-      <div class="flower">✿</div>
-
-      <h1>Aos 22,<br><em>eu te conheci.</em></h1>
-
-      <p class="subtitle">Uma história contada por quem a viveu.</p>
-
-      <div class="line"></div>
-
-      <p class="cover-note">Algumas histórias permanecem em nós.</p>
-
-      <button class="main-button" id="startReading">
-        Começar a leitura ↗
-      </button>
-    </section>
-
-    <section class="reader" id="leitura">
-
-      <aside class="sidebar">
-        <p class="eyebrow">ÍNDICE</p>
-        <h2>Capítulos</h2>
-
-        <nav id="chapterList">
-          <button class="chapter-link active" data-chapter="0">01 · 31 de dezembro de 2021</button>
-          <button class="chapter-link" data-chapter="1">02 · Desafios</button>
-          <button class="chapter-link" data-chapter="2">03 · Aos 24 anos</button>
-          <button class="chapter-link" data-chapter="3">04 · Seus detalhes</button>
-          <button class="chapter-link" data-chapter="4">05 · O fim</button>
-        </nav>
-
-        <p class="sidebar-note">Leia no seu tempo.<br>Não há pressa por aqui.</p>
-      </aside>
-
-      <article class="page">
-        <div class="page-top">
-          <span id="chapterNumber">CAPÍTULO 01</span>
-          <span>✳</span>
-        </div>
-
-        <div id="chapterContent"></div>
-
-        <div class="page-controls">
-          <button id="previousChapter" disabled>← Anterior</button>
-          <button id="nextChapter">Próximo capítulo →</button>
-        </div>
-      </article>
-
-    </section>
-
-    <section class="writing-area">
-      <p class="eyebrow">SEU ESPAÇO</p>
-      <h2>Continue escrevendo.</h2>
-      <p>Um cantinho para guardar palavras que ainda não encontraram capítulo.</p>
-
-      <textarea id="draft" placeholder="Escreva aqui, sem precisar organizar tudo agora..."></textarea>
-
-      <div class="draft-footer">
-        <span id="saveStatus">Seu rascunho fica salvo neste navegador.</span>
-        <button id="clearDraft">Limpar rascunho</button>
+      <div class="cover-image-wrap">
+        <img src="capa-livro.png" alt="Ilustração da nossa história" class="cover-image">
+        <span class="image-caption">uma lembrança, muitas páginas ♡</span>
       </div>
     </section>
 
-    <footer class="closing-page">
+    <section class="introduction">
+      <span class="section-kicker">ANTES DE COMEÇAR</span>
+      <p class="intro-text">
+        Existem histórias que não cabem em fotografias.
+        Algumas vivem nos detalhes, nos gestos, nas conversas
+        e nas lembranças que continuam conosco.
+      </p>
+      <p class="intro-signature">Esta é uma delas. ♡</p>
+    </section>
 
-      <div class="flower">✿</div>
+    <section class="reader-section" id="leitura">
 
-      <p class="eyebrow">UMA ÚLTIMA PÁGINA</p>
+      <div class="reader-heading">
+        <span class="section-kicker">O NOSSO LIVRO</span>
+        <h2>Uma história em capítulos</h2>
+        <p>Leia no seu tempo. Cada página guarda uma lembrança.</p>
+      </div>
 
-      <blockquote>
-        “Eu teria saído do Éden para abrir a porta para você, se soubesse que você estava lá.”
+      <div class="reader-layout">
+
+        <aside class="chapter-sidebar">
+          <div class="sidebar-heading">
+            <span class="section-kicker">ÍNDICE</span>
+            <h3>Capítulos</h3>
+          </div>
+
+          <nav id="chapterList" aria-label="Índice dos capítulos"></nav>
+
+          <p class="sidebar-note">
+            Leia no seu tempo.<br>
+            Não há pressa por aqui.
+          </p>
+        </aside>
+
+        <article class="chapter-card">
+
+          <div class="chapter-topline">
+            <span id="chapterNumber">CAPÍTULO 01</span>
+            <span class="chapter-heart">✳</span>
+          </div>
+
+          <div id="chapterContent" aria-live="polite"></div>
+
+          <div class="chapter-navigation">
+            <button id="previousChapter" class="secondary-button">
+              ← Anterior
+            </button>
+
+            <span id="chapterProgress">1 / 5</span>
+
+            <button id="nextChapter" class="secondary-button">
+              Próximo capítulo →
+            </button>
+          </div>
+
+        </article>
+      </div>
+    </section>
+
+    <section class="notes-section">
+      <div class="notes-card">
+        <span class="section-kicker">UM ESPAÇO SEU</span>
+        <h2>O que mais ficou na memória?</h2>
+        <p>
+          Um espaço para guardar pensamentos, lembranças
+          ou detalhes que ainda deseja escrever.
+        </p>
+
+        <textarea id="personalNotes" rows="5"
+          placeholder="Escreva aqui o que ainda mora na sua memória..."></textarea>
+
+        <div class="notes-footer">
+          <span id="saveStatus">Suas anotações ficam salvas neste navegador.</span>
+          <button id="clearNotes" class="text-button">Limpar anotações</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="closing-section" id="final">
+      <span class="section-kicker">ÚLTIMA PÁGINA</span>
+      <h2>Algumas histórias permanecem.</h2>
+
+      <blockquote class="final-quote">
+        “Eu teria saído do Éden para abrir a porta para você,
+        se soubesse que você estava lá.”
       </blockquote>
 
-      <p class="quote-credit">
-        — Emily Dickinson
-        <small>Tradução livre; atribuição a confirmar.</small>
+      <p class="quote-note">
+        Tradução livre; atribuição a Emily Dickinson a confirmar.
       </p>
 
       <div class="dedication">
         <p>Para você, que fez parte de tantos capítulos da minha vida.</p>
         <p>Algumas histórias não precisam ser esquecidas para que possamos continuar.</p>
-        <p>Obrigada por ter existido na minha história.</p>
-      </div>
-
-      <div class="photo-area">
-        <label for="photoUpload">＋ Escolher uma fotografia</label>
-        <input type="file" id="photoUpload" accept="image/png,image/jpeg">
-        <img id="photoPreview" alt="Fotografia escolhida" hidden>
-        <small>A fotografia aparece apenas nesta visualização.</small>
+        <p>Obrigada por ter existido na minha história. ♡</p>
       </div>
 
       <div class="music-card">
-        <p class="eyebrow">PARA OUVIR ENQUANTO LÊ</p>
-        <h2>Life Goes On</h2>
-        <p>Uma música para acompanhar esta história.</p>
-
-        <div class="video-frame">
-          <iframe
-            src="https://www.youtube.com/embed/-5q5mZbe3V8"
-            title="Life Goes On"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerpolicy="strict-origin-when-cross-origin"
-            allowfullscreen>
-          </iframe>
-        </div>
-
-        <a href="https://youtu.be/-5q5mZbe3V8?si=FacrUwX2I0LL3Apb" target="_blank" rel="noopener noreferrer">
-          Abrir no YouTube ↗
+        <span class="section-kicker">UMA MÚSICA PARA A HISTÓRIA</span>
+        <h3>Life Goes On</h3>
+        <p>Uma trilha para acompanhar essas lembranças.</p>
+        <a href="https://youtu.be/-5q5mZbe3V8?si=FacrUwX2I0LL3Apb"
+          target="_blank" rel="noopener noreferrer" class="music-link">
+          Ouvir música ↗
         </a>
       </div>
 
-      <p class="final-line">
-        Algumas histórias permanecem em nós,<br>
-        mesmo quando a vida nos leva adiante.
-      </p>
-
-      <p class="footer-sign">FIM — POR ENQUANTO</p>
-
-    </footer>
+      <p class="last-line">Eu sou uma parte da sua casa.</p>
+    </section>
 
   </main>
 
-  <script src="script.js"></script>
+  <footer class="footer">
+    <p>Feito com memória, carinho e algumas páginas de saudade. ♡</p>
+    <a href="#inicio">Voltar ao início ↑</a>
+  </footer>
 
 </body>
 </html>
