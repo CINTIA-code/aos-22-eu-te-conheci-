@@ -3,6 +3,8 @@ const chapters = [
   {
     title: "31 de dezembro de 2021",
     subtitle: "O começo de uma história",
+    image: "capitulo-1.png",
+    imageCaption: "31 de dezembro de 2021 — o início de tudo.",
     content: `
       <p>Eu ainda me lembro daquele 31 de dezembro de 2021.</p>
 
@@ -19,13 +21,14 @@ const chapters = [
       <p>Eu só sabia que queria conhecer você.</p>
 
       <p>E, sem perceber, estava começando uma das histórias mais importantes da minha vida.</p>
-    `,
-    image: "",
-    imageCaption: ""
+    `
   },
+
   {
     title: "Desafios",
     subtitle: "Aprender a conhecer você",
+    image: "capitulo-2.png",
+    imageCaption: "Os pequenos momentos que construíram nossa rotina.",
     content: `
       <p>Com o tempo, fui conhecendo muito mais do que a menina que encontrei naquela noite.</p>
 
@@ -42,13 +45,14 @@ const chapters = [
       <p>Sei que houve momentos em que fui negligente, em que poderia ter feito diferente. Existem atitudes minhas das quais me arrependo.</p>
 
       <p>Não escrevo isso para mudar o passado, mas porque você merece uma história honesta. Eu também estava aprendendo.</p>
-    `,
-    image: "",
-    imageCaption: ""
+    `
   },
+
   {
     title: "Aos 24 anos",
     subtitle: "Éramos apenas nós",
+    image: "capitulo-3.png",
+    imageCaption: "As brincadeiras, as risadas e o nosso jeito de existir juntas.",
     content: `
       <p>Em alguns momentos da minha vida, eu me senti quebrada. Ainda era jovem, ainda tentava entender tantas coisas sobre mim e sobre o mundo.</p>
 
@@ -65,13 +69,14 @@ const chapters = [
       <p>Quando penso naquele tempo, não lembro apenas dos acontecimentos. Lembro de como era estar com você. De como, em tantos momentos, éramos apenas nós.</p>
 
       <p>Eu não era perfeita. Você também não precisava ser. Éramos duas mulheres tentando entender a vida, cada uma com suas histórias, seus limites e suas maneiras de amar.</p>
-    `,
-    image: "",
-    imageCaption: ""
+    `
   },
+
   {
     title: "Seus detalhes",
     subtitle: "As coisas que só eu sabia admirar",
+    image: "capitulo-4.png",
+    imageCaption: "Os detalhes que eu poderia observar por horas.",
     content: `
       <p>Se eu pudesse guardar alguma coisa em uma fotografia que nunca desbotasse, talvez escolhesse os seus detalhes.</p>
 
@@ -88,13 +93,14 @@ const chapters = [
       <p>Eu tinha 22 anos quando conheci você. Ainda estava aprendendo tantas coisas. Nem sempre acertei, nem sempre soube transformar o que sentia em atitudes.</p>
 
       <p>Mas eu queria viver aquelas possibilidades com você.</p>
-    `,
-    image: "",
-    imageCaption: ""
+    `
   },
+
   {
     title: "O fim",
     subtitle: "O que permanece",
+    image: "capitulo-5.png",
+    imageCaption: "Alguns planos mudam, mas as lembranças permanecem.",
     content: `
       <p>O fim também chegou. E, com ele, algumas despedidas que eu nunca tinha imaginado precisar aprender.</p>
 
@@ -113,14 +119,11 @@ const chapters = [
       <p>Talvez a vida nos leve para lugares diferentes, mas isso não apaga o que vivemos.</p>
 
       <p>Eu sou uma parte da sua casa.</p>
-    `,
-    image: "",
-    imageCaption: ""
+    `
   }
 ];
 
-let currentChapter = 0;
-
+// ELEMENTOS DO LIVRO
 const chapterList = document.getElementById("chapterList");
 const chapterContent = document.getElementById("chapterContent");
 const chapterNumber = document.getElementById("chapterNumber");
@@ -128,50 +131,27 @@ const chapterProgress = document.getElementById("chapterProgress");
 const previousButton = document.getElementById("previousChapter");
 const nextButton = document.getElementById("nextChapter");
 
-function renderChapter(index) {
-  currentChapter = index;
+let currentChapter = 0;
 
-  const chapter = chapters[index];
-
-  chapterNumber.textContent =
-    `CAPÍTULO ${String(index + 1).padStart(2, "0")}`;
-
-  chapterProgress.textContent = `${index + 1} / ${chapters.length}`;
-
-  chapterContent.innerHTML = `
-    <h2 class="chapter-title">${chapter.title}</h2>
-    <p class="chapter-subtitle">${chapter.subtitle}</p>
-
-    ${chapter.image ? `
-      <figure class="chapter-art">
-        <img src="${chapter.image}" alt="${chapter.imageCaption || chapter.title}">
-        ${chapter.imageCaption ? `<figcaption>${chapter.imageCaption}</figcaption>` : ""}
-      </figure>
-    ` : ""}
-
-    <div class="chapter-body">${chapter.content}</div>
-  `;
-
-  document.querySelectorAll(".chapter-button").forEach((button, i) => {
-    button.classList.toggle("active", i === index);
-    button.setAttribute("aria-current", i === index ? "page" : "false");
-  });
-
-  previousButton.disabled = index === 0;
-  nextButton.disabled = index === chapters.length - 1;
-}
-
+// CRIA O ÍNDICE DOS CAPÍTULOS
 function createChapterMenu() {
+  chapterList.innerHTML = "";
+
   chapters.forEach((chapter, index) => {
     const button = document.createElement("button");
 
+    button.type = "button";
     button.className = "chapter-button";
-    button.textContent = `${String(index + 1).padStart(2, "0")} — ${chapter.title}`;
+
+    button.textContent =
+      `${String(index + 1).padStart(2, "0")} · ${chapter.title}`;
 
     button.addEventListener("click", () => {
       renderChapter(index);
+
       document.getElementById("leitura").scrollIntoView({
-        behavior: "smooth"
+        behavior: "smooth",
+        block: "start"
       });
     });
 
@@ -179,45 +159,108 @@ function createChapterMenu() {
   });
 }
 
+// EXIBE O CAPÍTULO SELECIONADO
+function renderChapter(index) {
+  if (index < 0 || index >= chapters.length) return;
+
+  currentChapter = index;
+
+  const chapter = chapters[index];
+
+  chapterNumber.textContent =
+    `CAPÍTULO ${String(index + 1).padStart(2, "0")}`;
+
+  chapterProgress.textContent =
+    `${index + 1} / ${chapters.length}`;
+
+  chapterContent.innerHTML = `
+    <h2 class="chapter-title">${chapter.title}</h2>
+
+    <p class="chapter-subtitle">${chapter.subtitle}</p>
+
+    <figure class="chapter-art">
+      <img
+        src="${chapter.image}"
+        alt="${chapter.imageCaption || chapter.title}"
+        loading="lazy"
+      >
+      <figcaption>${chapter.imageCaption}</figcaption>
+    </figure>
+
+    <div class="chapter-body">
+      ${chapter.content}
+    </div>
+  `;
+
+  // Atualiza o capítulo ativo no índice
+  document.querySelectorAll(".chapter-button").forEach((button, i) => {
+    const active = i === index;
+
+    button.classList.toggle("active", active);
+
+    if (active) {
+      button.setAttribute("aria-current", "page");
+    } else {
+      button.removeAttribute("aria-current");
+    }
+  });
+
+  // Controla os botões de navegação
+  previousButton.disabled = index === 0;
+  nextButton.disabled = index === chapters.length - 1;
+}
+
+// BOTÃO CAPÍTULO ANTERIOR
 previousButton.addEventListener("click", () => {
-  if (currentChapter > 0) {
-    renderChapter(currentChapter - 1);
-  }
+  renderChapter(currentChapter - 1);
 });
 
+// BOTÃO PRÓXIMO CAPÍTULO
 nextButton.addEventListener("click", () => {
-  if (currentChapter < chapters.length - 1) {
-    renderChapter(currentChapter + 1);
-  }
+  renderChapter(currentChapter + 1);
 });
 
+// BOTÃO COMEÇAR A LEITURA
 document.getElementById("startReading").addEventListener("click", () => {
   document.getElementById("leitura").scrollIntoView({
     behavior: "smooth"
   });
 });
 
-// Anotações pessoais salvas neste navegador
+// ANOTAÇÕES PESSOAIS
 const notes = document.getElementById("personalNotes");
 const saveStatus = document.getElementById("saveStatus");
+const storageKey = "aos22-anotacoes";
 
-notes.value = localStorage.getItem("aos22-anotacoes") || "";
+// Recupera as anotações salvas
+try {
+  notes.value = localStorage.getItem(storageKey) || "";
 
-notes.addEventListener("input", () => {
-  localStorage.setItem("aos22-anotacoes", notes.value);
-  saveStatus.textContent = "Anotações salvas neste navegador ♡";
-});
+  // Salva automaticamente enquanto escreve
+  notes.addEventListener("input", () => {
+    try {
+      localStorage.setItem(storageKey, notes.value);
+      saveStatus.textContent = "Anotações salvas neste navegador ♡";
+    } catch (error) {
+      saveStatus.textContent =
+        "Não foi possível salvar neste navegador.";
+    }
+  });
 
-document.getElementById("clearNotes").addEventListener("click", () => {
-  const confirmed = confirm("Deseja realmente apagar suas anotações?");
+  // Limpa as anotações
+  document.getElementById("clearNotes").addEventListener("click", () => {
+    if (confirm("Deseja realmente apagar suas anotações?")) {
+      notes.value = "";
+      localStorage.removeItem(storageKey);
+      saveStatus.textContent = "Anotações apagadas.";
+    }
+  });
 
-  if (confirmed) {
-    notes.value = "";
-    localStorage.removeItem("aos22-anotacoes");
-    saveStatus.textContent = "Anotações apagadas.";
-  }
-});
+} catch (error) {
+  saveStatus.textContent =
+    "O salvamento local não está disponível.";
+}
 
-// Inicialização
+// INICIALIZA O LIVRO
 createChapterMenu();
 renderChapter(0);
