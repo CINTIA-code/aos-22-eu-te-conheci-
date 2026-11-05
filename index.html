@@ -4,7 +4,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#281c30">
+  <meta name="theme-color" content="#30243a">
+  <meta name="description" content="Uma história contada por quem a viveu.">
   <title>Aos 22, eu te conheci.</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -25,92 +26,128 @@
   <main>
 
     <section class="cover" id="inicio">
+      <div class="cover-decoration decoration-one">✳</div>
+      <div class="cover-decoration decoration-two">♡</div>
+
       <div class="cover-copy">
         <span class="eyebrow">UMA HISTÓRIA CONTADA POR QUEM A VIVEU</span>
+
         <h1>Aos 22,<br>eu te conheci.</h1>
+
+        <div class="cover-divider"></div>
+
         <p class="cover-description">
           Algumas pessoas se tornam parte das nossas histórias.
           Outras permanecem nos detalhes.
         </p>
+
         <button class="primary-button" id="startReading">
-          Começar a leitura ↗
+          Abrir meu livro <span>↗</span>
         </button>
+
         <p class="cover-date">31 de dezembro de 2021</p>
       </div>
 
       <div class="cover-image-wrap">
-        <img src="capa-livro.png" alt="Ilustração da nossa história" class="cover-image">
+        <div class="cover-frame">
+          <img src="capa-livro.png" alt="Ilustração da nossa história" class="cover-image">
+        </div>
         <span class="image-caption">uma lembrança, muitas páginas ♡</span>
       </div>
+
+      <span class="cover-number">01 — 05</span>
     </section>
 
     <section class="introduction">
       <span class="section-kicker">ANTES DE COMEÇAR</span>
+
       <p class="intro-text">
         Existem histórias que não cabem em fotografias.
         Algumas vivem nos detalhes, nos gestos, nas conversas
         e nas lembranças que continuam conosco.
       </p>
+
       <p class="intro-signature">Esta é uma delas. ♡</p>
+
+      <span class="intro-ornament">✳</span>
     </section>
 
     <section class="reader-section" id="leitura">
 
       <div class="reader-heading">
         <span class="section-kicker">O NOSSO LIVRO</span>
-        <h2>Uma história em capítulos</h2>
-        <p>Leia no seu tempo. Cada página guarda uma lembrança.</p>
+        <h2>Uma história em páginas</h2>
+        <p>Vire as páginas. Algumas lembranças merecem ser lidas devagar.</p>
       </div>
 
-      <div class="reader-layout">
+      <div class="book-shell">
 
-        <aside class="chapter-sidebar">
-          <div class="sidebar-heading">
-            <span class="section-kicker">ÍNDICE</span>
-            <h3>Capítulos</h3>
-          </div>
+        <div class="book-top">
+          <span>ENTRE PÁGINAS</span>
+          <span id="chapterNumber">CAPÍTULO 01</span>
+        </div>
 
-          <nav id="chapterList" aria-label="Índice dos capítulos"></nav>
+        <article class="book-spread" id="bookSpread">
 
-          <p class="sidebar-note">
-            Leia no seu tempo.<br>
-            Não há pressa por aqui.
-          </p>
-        </aside>
+          <section class="book-page page-left">
+            <div class="page-content">
+              <span class="page-kicker" id="pageKicker">UMA LEMBRANÇA</span>
+              <h2 id="pageTitle">31 de dezembro de 2021</h2>
+              <p class="page-subtitle" id="pageSubtitle">O começo de uma história</p>
 
-        <article class="chapter-card">
+              <div class="page-divider">✳</div>
 
-          <div class="chapter-topline">
-            <span id="chapterNumber">CAPÍTULO 01</span>
-            <span class="chapter-heart">✳</span>
-          </div>
+              <figure class="chapter-art">
+                <img id="chapterImage" src="capitulo-1.png" alt="Ilustração do capítulo">
+                <figcaption id="imageCaption"></figcaption>
+              </figure>
+            </div>
 
-          <div id="chapterContent" aria-live="polite"></div>
+            <span class="page-number" id="leftPageNumber">02</span>
+          </section>
 
-          <div class="chapter-navigation">
-            <button id="previousChapter" class="secondary-button">
-              ← Anterior
-            </button>
+          <section class="book-page page-right">
+            <div class="page-content">
+              <span class="page-kicker">EM PALAVRAS</span>
+              <div id="chapterText" class="chapter-text" aria-live="polite"></div>
+            </div>
 
-            <span id="chapterProgress">1 / 5</span>
-
-            <button id="nextChapter" class="secondary-button">
-              Próximo capítulo →
-            </button>
-          </div>
+            <span class="page-number" id="rightPageNumber">03</span>
+          </section>
 
         </article>
+
+        <div class="book-bottom">
+          <button id="previousChapter" class="page-button" disabled>
+            <span>←</span> Página anterior
+          </button>
+
+          <div class="book-progress">
+            <span id="chapterProgress">01 / 05</span>
+            <div class="progress-track">
+              <div class="progress-fill" id="progressFill"></div>
+            </div>
+          </div>
+
+          <button id="nextChapter" class="page-button">
+            Próxima página <span>→</span>
+          </button>
+        </div>
+
       </div>
+
+      <div class="chapter-index">
+        <span class="section-kicker">ESCOLHA UM CAPÍTULO</span>
+        <nav id="chapterList" aria-label="Índice dos capítulos"></nav>
+      </div>
+
     </section>
 
     <section class="notes-section">
       <div class="notes-card">
         <span class="section-kicker">UM ESPAÇO SEU</span>
         <h2>O que mais ficou na memória?</h2>
-        <p>
-          Um espaço para guardar pensamentos, lembranças
-          ou detalhes que ainda deseja escrever.
-        </p>
+        <p>Um espaço para guardar pensamentos, lembranças ou detalhes que ainda deseja escrever.</p>
 
         <textarea id="personalNotes" rows="5"
           placeholder="Escreva aqui o que ainda mora na sua memória..."></textarea>
@@ -123,6 +160,8 @@
     </section>
 
     <section class="closing-section" id="final">
+      <div class="closing-ornament">✳</div>
+
       <span class="section-kicker">ÚLTIMA PÁGINA</span>
       <h2>Algumas histórias permanecem.</h2>
 
@@ -134,6 +173,8 @@
       <p class="quote-note">
         Tradução livre; atribuição a Emily Dickinson a confirmar.
       </p>
+
+      <div class="closing-divider">♡</div>
 
       <div class="dedication">
         <p>Para você, que fez parte de tantos capítulos da minha vida.</p>
