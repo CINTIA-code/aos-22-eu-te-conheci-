@@ -1,219 +1,95 @@
 const chapters = [
   {
     title: "31 de dezembro de 2021",
-    paragraphs: [
-      "Era o fim de ano. Eu estava indo para a praça da cidade com alguns amigos para passar a virada. Você estava a caminho, e fui com uma colega te buscar.",
+    subtitle: "O começo de uma história",
+    content: `
+      <p>Eu ainda me lembro daquele 31 de dezembro de 2021.</p>
 
-      "Quando você me abraçou, eu fiquei tímida. Te achava muito bonita e, naquele instante, alguma coisa em mim pareceu prestar atenção em cada detalhe. Lembro dos nossos corpos se encostando e, principalmente, das nossas mãos. Elas se tocavam repetidas vezes, quase sem querer — ou talvez querendo.",
+      <p>Não sabia, naquela noite, que estava prestes a conhecer alguém que ocuparia tantos espaços dentro de mim. Era uma noite como tantas outras, até que você apareceu.</p>
 
-      "Eu senti um calor por dentro. Pela primeira vez em muito tempo, tive a sensação de ser vista sem precisar fazer nada para merecer aquilo. Eu só precisava estar ali.",
+      <p>Lembro do primeiro abraço, da timidez, das mãos que se aproximavam quase sem querer. Havia alguma coisa no seu jeito que me despertava curiosidade. Eu queria estar perto, descobrir mais sobre você, encontrar motivos para prolongar aquele instante.</p>
 
-      "Gosto de imaginar que você também sentiu alguma coisa parecida. Mas essa parte da história só você poderia contar."
-    ]
+      <p>Talvez eu ainda não soubesse explicar, mas gostava de olhar para você. Gostava da sua presença, da maneira como tudo parecia um pouco mais interessante quando você estava por perto.</p>
+
+      <p>Eu não conhecia ainda o som da sua voz nas manhãs, o seu rosto sonolento ou as histórias que você repetiria tantas vezes. Não sabia dos seus cachos, dos detalhes do seu rosto que aprenderia a admirar, nem de todas as pequenas coisas que um dia seriam tão familiares.</p>
+
+      <p>Eu só sabia que queria conhecer você.</p>
+
+      <p>E, sem perceber, estava começando uma das histórias mais importantes da minha vida.</p>
+    `
   },
-
   {
     title: "Desafios",
-    paragraphs: [
-      "Em 2022, com meus erros e minhas negligências, senti que perdi uma parte de você. O medo e a insegurança fizeram com que eu não soubesse cuidar de algumas oportunidades de viver um amor bonito. Reconheço o que foi meu, sem fingir que uma história inteira cabe na responsabilidade de uma pessoa só.",
+    subtitle: "Aprender a conhecer você",
+    content: `
+      <p>Com o tempo, fui conhecendo muito mais do que a menina que encontrei naquela noite.</p>
 
-      "A gente tinha um humor tão nosso. Eu não me importava quando você me acordava no meio da noite ou bem cedinho, falando alto. Eu gostava de ouvir você contar, pela manhã, coisas que muitas vezes eu nem entendia.",
+      <p>Conheci seus detalhes. Seus cachos, sua pele, seus olhos, seu nariz. E havia uma beleza muito particular em você, uma beleza que não precisava de ocasião especial para ser percebida. Eu gostava de observar você simplesmente sendo você.</p>
 
-      "Antes de ir trabalhar, você deitava em cima de mim por alguns minutos. Era uma das experiências mais bonitas que eu já tinha vivido. Parecia uma casinha. Uma felicidade pequena, cotidiana, mas enorme para mim.",
+      <p>Também conheci a nossa rotina. As manhãs, os horários, as histórias, as pequenas interrupções do dia. Você me acordando, a gente conversando, os momentos em que eu me deitava sobre você antes de começar a trabalhar.</p>
 
-      "Eu gostava dos seus cachos, da sua pele, dos seus olhos e do seu nariz. Gostava de você nos detalhes que talvez nem percebesse."
-    ]
+      <p>Às vezes, parecia uma casinha. Não necessariamente um lugar, mas aquela sensação de pertencimento que nasce quando alguém se torna parte dos nossos dias.</p>
+
+      <p>Mas também existiram desafios. Em 2022, eu era alguém que ainda estava aprendendo a amar, a dividir a vida e a reconhecer as próprias falhas. Sei que houve momentos em que fui negligente, em que poderia ter feito diferente. Existem atitudes minhas das quais me arrependo.</p>
+
+      <p>Não escrevo isso para mudar o passado, mas porque você merece uma história honesta. Eu também estava aprendendo. E, mesmo quando não soube demonstrar da melhor maneira, existia amor.</p>
+    `
   },
-
   {
     title: "Aos 24 anos",
-    paragraphs: [
-      "Eu me sentia quebrada, mas ainda queria mudar e tentar. Eu era jovem, não tinha muito apoio e não sabia como viver algumas coisas. Isso não é uma desculpa; é parte do contexto de quem eu era naquele momento.",
+    subtitle: "Éramos apenas nós",
+    content: `
+      <p>Em alguns momentos da minha vida, eu me senti quebrada. Ainda era jovem, ainda tentava entender tantas coisas sobre mim e sobre o mundo. Nem sempre tive o apoio de que precisava, e talvez por isso tenha desejado tanto construir com você um lugar onde o amor não precisasse machucar.</p>
 
-      "Achei que conseguiria consertar tudo e mostrar que o amor também pode queimar sem machucar — pode ser calor, abrigo, aconchego. Eu queria que você sentisse isso comigo.",
+      <p>Eu queria que você encontrasse em mim um pouco de tranquilidade. Queria ser abraço, conforto, companhia. Queria que a vida pudesse ser mais leve quando estivéssemos juntas.</p>
 
-      "A gente ria, fazia piadas e tentava encontrar leveza mesmo nos dias difíceis. Nós duas tivemos momentos complicados, mas continuávamos tentando, porque acreditávamos que valia a pena.",
+      <p>Tenho saudade das nossas brincadeiras, das piadas que só faziam sentido para nós, das conversas e daquele humor que transformava coisas simples em lembranças tão nossas.</p>
 
-      "Na minha lembrança, o amor entre nós não tinha ego ou vaidade. Éramos apenas nós."
-    ]
+      <p>Gosto de lembrar da sua voz, do jeito como você contava as coisas, até mesmo quando repetia uma história que eu já conhecia. Havia intimidade nisso. Uma familiaridade bonita em saber o que vinha depois e, ainda assim, querer ouvir novamente.</p>
+
+      <p>Quando penso naquele tempo, não lembro apenas dos acontecimentos. Lembro de como era estar com você. De como, em tantos momentos, éramos apenas nós.</p>
+
+      <p>Eu não era perfeita. Você também não precisava ser. Éramos duas mulheres tentando entender a vida, cada uma com suas histórias, seus limites e suas maneiras de amar.</p>
+    `
   },
-
   {
     title: "Seus detalhes",
-    paragraphs: [
-      "Eu amei seus detalhes. Nos dias bons e nos dias ruins. Amei cada fase sua, desde quando você tinha 21 anos. E, mesmo quando as coisas mudavam, eu continuava encontrando beleza em você.",
+    subtitle: "As coisas que só eu sabia admirar",
+    content: `
+      <p>Se eu pudesse guardar alguma coisa em uma fotografia que nunca desbotasse, talvez escolhesse os seus detalhes.</p>
 
-      "Queria ter sido mais compreensiva, mais amorosa, mais carinhosa e mais atenta. Ao mesmo tempo, eu também tinha 22 anos e nem sempre sabia acertar. Eu estava aprendendo a viver, a amar e a entender o que sentia.",
+      <p>O seu rosto, os seus cachos, a sua pele, os seus olhos e o seu nariz. A maneira como você ficava quando estava com sono. Sua voz, que eu reconheceria entre tantas outras. Até as histórias que você já tinha me contado tantas vezes.</p>
 
-      "Eu amava sua voz, as histórias que você repetia, seu rosto inchadinho de sono. Amava observar você no banho, lavando e enxaguando o cabelo. São lembranças pequenas que ficaram enormes dentro de mim.",
+      <p>Lembro de lavar e enxaguar seu cabelo. De estar perto o suficiente para cuidar de coisas tão pequenas, que talvez parecessem comuns para qualquer outra pessoa, mas que para mim tinham um significado enorme.</p>
 
-      "Eu fantasiava sobre casamento entre duas mulheres. Imaginava que um dia seria sua esposa. Acompanhei tantas versões suas, dos 21 aos 27 anos, e espero que você tenha sentido ao menos um por cento do amor que eu tinha por você."
-    ]
+      <p>Eu gostava de observar você sem precisar de um motivo. Gostava de conhecer as suas expressões, os seus costumes, as pequenas particularidades que faziam de você alguém impossível de confundir.</p>
+
+      <p>Também me lembro de imaginar uma vida ao seu lado. Duas mulheres construindo uma casa, dividindo responsabilidades, escolhendo móveis, discutindo por pequenas coisas e depois encontrando um jeito de continuar. Eu imaginava o casamento, a nossa rotina, a possibilidade de chamar você de minha esposa.</p>
+
+      <p>Eu tinha 22 anos quando conheci você. Ainda estava aprendendo tantas coisas. Nem sempre acertei, nem sempre soube transformar o que sentia em atitudes. Mas eu queria viver aquelas possibilidades com você.</p>
+
+      <p>Talvez seja isso que torna certas lembranças tão especiais: elas guardam não apenas quem alguém foi, mas também tudo aquilo que imaginamos viver ao lado dessa pessoa.</p>
+    `
   },
-
   {
     title: "O fim",
-    paragraphs: [
-      "O fim é difícil porque não significa apenas deixar alguém. Às vezes, significa também abrir mão de desejos, planos e de uma vida que a gente chegou a imaginar com detalhes.",
+    subtitle: "O que permanece",
+    content: `
+      <p>O fim também chegou. E, com ele, algumas despedidas que eu nunca tinha imaginado precisar aprender.</p>
 
-      "Eu queria ser sua esposinha. Acreditava no nosso casamento, na nossa casa, nas pequenas discussões sobre a rotina de morar juntas. Eu teria me casado com você, sem dúvida.",
+      <p>Foram embora alguns planos, algumas certezas e aquela ideia de futuro que eu havia construído tantas vezes na minha cabeça. A vontade de casar com você, de ser sua esposinha, de termos nossa casa e uma vida feita de coisas simples.</p>
 
-      "Talvez eu pudesse ter feito mais em alguns momentos. Talvez algumas coisas pudessem ter sido diferentes. Ainda assim, não quero transformar nossa história em uma lista de culpas. Ela foi feita de duas pessoas, de tentativas, de afeto, de falhas e de tudo o que vivemos.",
+      <p>Eu teria me casado com você.</p>
 
-      "Obrigada por ter existido na minha história. Você é especial e continuará sendo alguém que eu amo — romanticamente, como pessoa e como família. Eu sou uma parte da sua casa."
-    ]
+      <p>Não digo isso para pedir que alguma coisa volte a ser como antes. Digo porque foi verdade. Porque, em algum momento, esse futuro existiu dentro de mim com uma intensidade que não consigo fingir que nunca senti.</p>
+
+      <p>Obrigada por ter existido na minha história. Por tudo o que compartilhamos, pelas risadas, pelos detalhes, pelos dias comuns que se tornaram lembranças importantes.</p>
+
+      <p>Você continua sendo alguém especial para mim. Alguém que amei romanticamente, mas que também conheci como pessoa, como companhia, como família.</p>
+
+      <p>Talvez a vida nos leve para lugares diferentes, mas isso não apaga o que vivemos.</p>
+
+      <p>Eu sou uma parte da sua casa.</p>
+    `
   }
 ];
-
-const chapterContent = document.getElementById("chapterContent");
-const chapterNumber = document.getElementById("chapterNumber");
-
-const chapterButtons = [
-  ...document.querySelectorAll(".chapter-link")
-];
-
-const previousButton = document.getElementById("previousChapter");
-const nextButton = document.getElementById("nextChapter");
-
-let currentChapter = 0;
-
-function renderChapter(index) {
-
-  currentChapter = index;
-
-  const chapter = chapters[index];
-
-  chapterButtons.forEach((button, i) => {
-    button.classList.toggle("active", i === index);
-  });
-
-  chapterNumber.textContent =
-    `CAPÍTULO ${String(index + 1).padStart(2, "0")}`;
-
-  chapterContent.innerHTML = `
-    <h2>${chapter.title}</h2>
-    ${chapter.paragraphs.map(paragraph => `<p>${paragraph}</p>`).join("")}
-  `;
-
-  previousButton.disabled = index === 0;
-
-  nextButton.textContent =
-    index === chapters.length - 1
-      ? "Voltar ao início ↗"
-      : "Próximo capítulo →";
-}
-
-// Navegação pelo índice
-
-chapterButtons.forEach(button => {
-
-  button.addEventListener("click", () => {
-
-    const index = Number(button.dataset.chapter);
-
-    renderChapter(index);
-
-    document.getElementById("leitura").scrollIntoView({
-      behavior: "smooth"
-    });
-
-  });
-
-});
-
-// Botão anterior
-
-previousButton.addEventListener("click", () => {
-
-  if (currentChapter > 0) {
-    renderChapter(currentChapter - 1);
-  }
-
-});
-
-// Botão próximo
-
-nextButton.addEventListener("click", () => {
-
-  if (currentChapter < chapters.length - 1) {
-
-    renderChapter(currentChapter + 1);
-
-  } else {
-
-    renderChapter(0);
-
-    document.getElementById("leitura").scrollIntoView({
-      behavior: "smooth"
-    });
-
-  }
-
-});
-
-// Começar leitura
-
-document.getElementById("startReading").addEventListener("click", () => {
-
-  document.getElementById("leitura").scrollIntoView({
-    behavior: "smooth"
-  });
-
-});
-
-// Salvar rascunho no navegador
-
-const draft = document.getElementById("draft");
-
-const saveStatus = document.getElementById("saveStatus");
-
-draft.value = localStorage.getItem("aos22-rascunho") || "";
-
-draft.addEventListener("input", () => {
-
-  localStorage.setItem("aos22-rascunho", draft.value);
-
-  saveStatus.textContent =
-    "Rascunho salvo neste navegador.";
-
-});
-
-// Limpar rascunho
-
-document.getElementById("clearDraft").addEventListener("click", () => {
-
-  const confirmClear = confirm(
-    "Quer mesmo apagar o rascunho salvo neste navegador?"
-  );
-
-  if (confirmClear) {
-
-    draft.value = "";
-
-    localStorage.removeItem("aos22-rascunho");
-
-    saveStatus.textContent = "Rascunho apagado.";
-
-  }
-
-});
-
-// Pré-visualização da fotografia
-
-document.getElementById("photoUpload").addEventListener("change", event => {
-
-  const file = event.target.files[0];
-
-  if (!file) return;
-
-  const preview = document.getElementById("photoPreview");
-
-  preview.src = URL.createObjectURL(file);
-
-  preview.hidden = false;
-
-});
-
-// Iniciar o livro no primeiro capítulo
-
-renderChapter(0);
