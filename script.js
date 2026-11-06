@@ -1,3 +1,6 @@
+// =====================================
+// CONTEÚDO DOS CAPÍTULOS
+// =====================================
 
 const chapters = [
   {
@@ -76,7 +79,9 @@ const chapters = [
   }
 ];
 
-// ELEMENTOS DO LIVRO
+// =====================================
+// ELEMENTOS HTML
+// =====================================
 
 const chapterList = document.getElementById("chapterList");
 const chapterNumber = document.getElementById("chapterNumber");
@@ -88,10 +93,14 @@ const pageNumber = document.getElementById("pageNumber");
 
 const previousButton = document.getElementById("previousChapter");
 const nextButton = document.getElementById("nextChapter");
+const startButton = document.getElementById("startReading");
+const backButton = document.getElementById("backToTop");
 
 let currentChapter = 0;
 
-// CRIAR ÍNDICE
+// =====================================
+// CRIAR O ÍNDICE
+// =====================================
 
 function createChapterMenu() {
   chapterList.innerHTML = "";
@@ -118,10 +127,14 @@ function createChapterMenu() {
   });
 }
 
-// RENDERIZAR CAPÍTULO
+// =====================================
+// EXIBIR UM CAPÍTULO
+// =====================================
 
 function renderChapter(index) {
-  if (index < 0 || index >= chapters.length) return;
+  if (index < 0 || index >= chapters.length) {
+    return;
+  }
 
   currentChapter = index;
 
@@ -133,8 +146,6 @@ function renderChapter(index) {
   chapterProgress.textContent =
     `${index + 1} / ${chapters.length}`;
 
-  // TEXTO ORIGINAL
-
   chapterText.innerHTML = `
     <h2 class="chapter-title">${chapter.title}</h2>
 
@@ -145,35 +156,29 @@ function renderChapter(index) {
     </div>
   `;
 
-  // IMAGEM ORIGINAL
-
   chapterImage.src = chapter.image;
   chapterImage.alt = chapter.caption;
 
   chapterImageCaption.textContent = chapter.caption;
 
-  // NÚMERO DA PÁGINA
-
   pageNumber.textContent =
     String((index * 2) + 3).padStart(2, "0");
 
-  // ÍNDICE ATIVO
+  const buttons = document.querySelectorAll(".chapter-button");
 
-  document.querySelectorAll(".chapter-button").forEach((button, i) => {
-    button.classList.toggle("active", i === index);
+  buttons.forEach((button, buttonIndex) => {
+    const isActive = buttonIndex === index;
 
-    if (i === index) {
+    button.classList.toggle("active", isActive);
+
+    if (isActive) {
       button.setAttribute("aria-current", "page");
     } else {
       button.removeAttribute("aria-current");
     }
   });
 
-  // BOTÕES
-
   previousButton.disabled = index === 0;
-
-  nextButton.disabled = false;
 
   nextButton.textContent =
     index === chapters.length - 1
@@ -181,21 +186,13 @@ function renderChapter(index) {
       : "Próximo capítulo →";
 }
 
-// CAPÍTULO ANTERIOR
+// =====================================
+// BOTÃO ANTERIOR
+// =====================================
 
 previousButton.addEventListener("click", () => {
   if (currentChapter > 0) {
     renderChapter(currentChapter - 1);
-  }
-});
-
-// PRÓXIMO CAPÍTULO
-
-nextButton.addEventListener("click", () => {
-  if (currentChapter < chapters.length - 1) {
-    renderChapter(currentChapter + 1);
-  } else {
-    renderChapter(0);
 
     document.getElementById("leitura").scrollIntoView({
       behavior: "smooth",
@@ -204,16 +201,48 @@ nextButton.addEventListener("click", () => {
   }
 });
 
-// COMEÇAR A LEITURA
+// =====================================
+// BOTÃO PRÓXIMO
+// =====================================
 
-document.getElementById("startReading").addEventListener("click", () => {
+nextButton.addEventListener("click", () => {
+  if (currentChapter < chapters.length - 1) {
+    renderChapter(currentChapter + 1);
+  } else {
+    renderChapter(0);
+  }
+
   document.getElementById("leitura").scrollIntoView({
     behavior: "smooth",
     block: "start"
   });
 });
 
+// =====================================
+// COMEÇAR A LEITURA
+// =====================================
+
+startButton?.addEventListener("click", () => {
+  document.getElementById("leitura").scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+  });
+});
+
+// =====================================
+// VOLTAR AO INÍCIO
+// =====================================
+
+backButton?.addEventListener("click", () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+});
+
+// =====================================
 // INICIALIZAÇÃO
+// =====================================
 
 createChapterMenu();
 renderChapter(0);
