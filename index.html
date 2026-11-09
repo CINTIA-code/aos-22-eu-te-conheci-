@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -10,7 +9,8 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Parisienne&display=swap" rel="stylesheet">
+
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="style.css">
   <script src="script.js" defer></script>
@@ -18,70 +18,62 @@
 
 <body>
 
-  <main>
+  <!-- ABERTURA -->
+  <section class="cover" id="cover">
 
-    <!-- ABERTURA -->
-    <section class="hero" id="inicio">
+    <div class="cover-decoration decoration-one"></div>
+    <div class="cover-decoration decoration-two"></div>
 
-      <div class="hero-glow"></div>
-      <div class="hero-orbit orbit-one"></div>
-      <div class="hero-orbit orbit-two"></div>
+    <div class="cover-content">
 
-      <span class="hero-eyebrow">UMA HISTÓRIA SOBRE NÓS</span>
+      <span class="eyebrow">UMA HISTÓRIA SOBRE NÓS</span>
 
       <div class="flower-container">
+        <div class="flower-glow"></div>
+
         <img
+          class="cover-flower"
           src="flor-copo-de-leite.png"
           alt="Flor copo-de-leite"
-          class="hero-flower"
         >
       </div>
 
-      <div class="hero-content">
-        <p class="hero-pretitle">Uma lembrança guardada no tempo</p>
+      <h1>Aos 22,<br>eu te conheci.</h1>
 
-        <h1>Aos 22,<br>eu te conheci.</h1>
+      <p class="cover-subtitle">Algumas histórias permanecem.</p>
 
-        <p class="hero-subtitle">Algumas histórias permanecem.</p>
+      <button id="startReading" class="start-button" type="button">
+        Entrar na história <span>♡</span>
+      </button>
 
-        <button class="open-book" id="startReading" type="button">
-          <span>Entrar na nossa história</span>
-          <span class="button-arrow">↓</span>
-        </button>
-      </div>
+      <span class="cover-footer">UMA MEMÓRIA, CINCO CAPÍTULOS</span>
 
-      <span class="hero-decoration">♡</span>
-      <span class="hero-bottom">31 DE DEZEMBRO DE 2021</span>
+    </div>
+  </section>
 
-    </section>
 
-    <!-- INTRODUÇÃO -->
-    <section class="introduction">
-      <span class="section-eyebrow">ANTES DE COMEÇAR</span>
+  <!-- LIVRO -->
+  <main class="container" id="book">
 
-      <h2>Existem encontros que continuam vivendo na gente.</h2>
+    <header class="intro">
+      <span class="eyebrow">A nossa história</span>
 
-      <p>
-        Esta é uma história feita de lembranças, detalhes, descobertas,
-        desafios e sentimentos. Leia no seu tempo. Sem pressa.
-      </p>
+      <h2>Capítulos de uma<br> lembrança</h2>
 
-      <span class="small-heart">♡</span>
-    </section>
+      <p>Leia no seu tempo. Sem pressa.</p>
+    </header>
+
 
     <!-- ÍNDICE -->
     <section class="index-section" aria-label="Índice dos capítulos">
 
-      <div class="section-heading">
-        <span class="section-eyebrow">O NOSSO LIVRO</span>
-        <h2>Capítulos</h2>
-        <p>Cinco partes de uma história que existiu.</p>
-      </div>
+      <h2>Índice</h2>
 
       <nav id="chapterList" class="chapter-list" aria-label="Capítulos">
       </nav>
 
     </section>
+
 
     <!-- LEITURA -->
     <section id="leitura" class="reading-section">
@@ -113,6 +105,7 @@
 
         </div>
 
+
         <article id="chapterText" class="text-page">
 
           <h2 class="chapter-title">31 de dezembro de 2021</h2>
@@ -121,6 +114,8 @@
 
       </div>
 
+
+      <!-- NAVEGAÇÃO -->
       <div class="navigation">
 
         <button
@@ -143,28 +138,22 @@
       </div>
 
       <div class="page-counter">
-        CAPÍTULO <span id="pageNumber">01</span> · 05
+        Página <span id="pageNumber">03</span>
       </div>
 
     </section>
 
+
     <!-- ENCERRAMENTO -->
     <section class="closing-section">
 
-      <span class="section-eyebrow">PARA GUARDAR</span>
+      <span class="eyebrow">Para guardar</span>
 
       <h2>Algumas histórias permanecem.</h2>
 
       <p class="closing-message">
         Algumas histórias permanecem em nós, mesmo quando a vida nos leva adiante.
       </p>
-
-      <div class="closing-flower">
-        <img
-          src="flor-copo-de-leite.png"
-          alt="Flor copo-de-leite"
-        >
-      </div>
 
       <blockquote>
         “Eu teria saído do Éden para abrir a porta para você,
@@ -193,9 +182,9 @@
 
     </section>
 
+
     <footer>
-      <span>FEITO COM CARINHO</span>
-      <p>Uma história. Cinco capítulos. Muitas lembranças. ♡</p>
+      <p>Feito com carinho.</p>
     </footer>
 
   </main>
