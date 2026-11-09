@@ -57,6 +57,8 @@ const chapters = [
   }
 ];
 
+// ELEMENTOS
+
 const opening = document.getElementById("opening");
 const enterButton = document.getElementById("enterBook");
 
@@ -74,131 +76,160 @@ const backButton = document.getElementById("backToTop");
 
 let currentChapter = 0;
 
-// ABRIR O LIVRO
+// VERIFICAR ELEMENTOS DO HTML
 
-document.body.classList.add("locked");
+const requiredElements = [
+  opening,
+  enterButton,
+  chapterList,
+  chapterNumber,
+  chapterImage,
+  chapterImageCaption,
+  chapterText,
+  chapterProgress,
+  pageNumber,
+  previousButton,
+  nextButton,
+  backButton
+];
 
-enterButton.addEventListener("click", () => {
-  opening.classList.add("hidden");
-  document.body.classList.remove("locked");
+if (requiredElements.some(element => !element)) {
+  console.error(
+    "Erro: confira se os IDs do index.html correspondem aos IDs do script.js."
+  );
+} else {
 
-  setTimeout(() => {
-    opening.style.display = "none";
-  }, 1000);
-});
+  // ABRIR O LIVRO
 
-// CRIAR ÍNDICE
+  document.body.classList.add("locked");
 
-function createChapterMenu() {
-  chapterList.innerHTML = "";
+  enterButton.addEventListener("click", () => {
+    opening.classList.add("hidden");
+    document.body.classList.remove("locked");
 
-  chapters.forEach((chapter, index) => {
-    const button = document.createElement("button");
+    setTimeout(() => {
+      opening.style.display = "none";
+    }, 1000);
+  });
 
-    button.type = "button";
-    button.className = "chapter-button";
-    button.textContent =
-      `${String(index + 1).padStart(2, "0")} · ${chapter.title}`;
+  // CRIAR ÍNDICE
 
-    button.addEventListener("click", () => {
-      renderChapter(index);
+  function createChapterMenu() {
+    chapterList.innerHTML = "";
+
+    chapters.forEach((chapter, index) => {
+      const button = document.createElement("button");
+
+      button.type = "button";
+      button.className = "chapter-button";
+
+      button.textContent =
+        `${String(index + 1).padStart(2, "0")} · ${chapter.title}`;
+
+      button.addEventListener("click", () => {
+        renderChapter(index);
+
+        document.getElementById("leitura").scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+      });
+
+      chapterList.appendChild(button);
+    });
+  }
+
+  // EXIBIR CAPÍTULO
+
+  function renderChapter(index) {
+    if (index < 0 || index >= chapters.length) return;
+
+    currentChapter = index;
+
+    const chapter = chapters[index];
+
+    chapterNumber.textContent =
+      `CAPÍTULO ${String(index + 1).padStart(2, "0")}`;
+
+    chapterProgress.textContent =
+      `${index + 1} / ${chapters.length}`;
+
+    chapterText.innerHTML = `
+      <h2 class="chapter-title">${chapter.title}</h2>
+      <div class="chapter-body">
+        ${chapter.paragraphs
+          .map(paragraph => `<p>${paragraph}</p>`)
+          .join("")}
+      </div>
+    `;
+
+    chapterImage.src = chapter.image;
+    chapterImage.alt = chapter.caption;
+
+    chapterImageCaption.textContent = chapter.caption;
+
+    pageNumber.textContent =
+      String((index * 2) + 3).padStart(2, "0");
+
+    document.querySelectorAll(".chapter-button").forEach((button, i) => {
+      const active = i === index;
+
+      button.classList.toggle("active", active);
+
+      if (active) {
+        button.setAttribute("aria-current", "page");
+      } else {
+        button.removeAttribute("aria-current");
+      }
+    });
+
+    previousButton.disabled = index === 0;
+
+    nextButton.textContent =
+      index === chapters.length - 1
+        ? "Voltar ao início ↗"
+        : "Próximo capítulo →";
+  }
+
+  // CAPÍTULO ANTERIOR
+
+  previousButton.addEventListener("click", () => {
+    if (currentChapter > 0) {
+      renderChapter(currentChapter - 1);
 
       document.getElementById("leitura").scrollIntoView({
         behavior: "smooth",
         block: "start"
       });
-    });
-
-    chapterList.appendChild(button);
-  });
-}
-
-// EXIBIR CAPÍTULO
-
-function renderChapter(index) {
-  if (index < 0 || index >= chapters.length) return;
-
-  currentChapter = index;
-  const chapter = chapters[index];
-
-  chapterNumber.textContent =
-    `CAPÍTULO ${String(index + 1).padStart(2, "0")}`;
-
-  chapterProgress.textContent =
-    `${index + 1} / ${chapters.length}`;
-
-  chapterText.innerHTML = `
-    <h2 class="chapter-title">${chapter.title}</h2>
-    <div class="chapter-body">
-      ${chapter.paragraphs.map(paragraph => `<p>${paragraph}</p>`).join("")}
-    </div>
-  `;
-
-  chapterImage.src = chapter.image;
-  chapterImage.alt = chapter.caption;
-  chapterImageCaption.textContent = chapter.caption;
-
-  pageNumber.textContent =
-    String((index * 2) + 3).padStart(2, "0");
-
-  document.querySelectorAll(".chapter-button").forEach((button, i) => {
-    const active = i === index;
-
-    button.classList.toggle("active", active);
-
-    if (active) {
-      button.setAttribute("aria-current", "page");
-    } else {
-      button.removeAttribute("aria-current");
     }
   });
 
-  previousButton.disabled = index === 0;
+  // PRÓXIMO CAPÍTULO
 
-  nextButton.textContent =
-    index === chapters.length - 1
-      ? "Voltar ao início ↗"
-      : "Próximo capítulo →";
-}
-
-// CAPÍTULO ANTERIOR
-
-previousButton.addEventListener("click", () => {
-  if (currentChapter > 0) {
-    renderChapter(currentChapter - 1);
+  nextButton.addEventListener("click", () => {
+    if (currentChapter < chapters.length - 1) {
+      renderChapter(currentChapter + 1);
+    } else {
+      renderChapter(0);
+    }
 
     document.getElementById("leitura").scrollIntoView({
       behavior: "smooth",
       block: "start"
     });
-  }
-});
-
-// PRÓXIMO CAPÍTULO
-
-nextButton.addEventListener("click", () => {
-  if (currentChapter < chapters.length - 1) {
-    renderChapter(currentChapter + 1);
-  } else {
-    renderChapter(0);
-  }
-
-  document.getElementById("leitura").scrollIntoView({
-    behavior: "smooth",
-    block: "start"
   });
-});
 
-// VOLTAR AO TOPO
+  // VOLTAR AO TOPO
 
-backButton.addEventListener("click", () => {
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth"
+  backButton.addEventListener("click", () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
   });
-});
 
-// INICIALIZAÇÃO
+  // INICIALIZAÇÃO
 
-createChapterMenu();
-renderChapter(0);
+  createChapterMenu();
+  renderChapter(0);
+}
