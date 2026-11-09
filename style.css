@@ -1,13 +1,15 @@
+
 :root {
-  --background: #f5eff7;
-  --paper: #fffafd;
-  --purple: #71577d;
-  --purple-dark: #594367;
-  --purple-light: #a18bab;
-  --text: #514656;
-  --muted: #9a8c9e;
-  --border: #eadfeb;
-  --shadow: 0 12px 35px rgba(81, 55, 91, 0.07);
+  --background: #100b12;
+  --paper: #fffaf5;
+  --wine: #7c354c;
+  --wine-dark: #3d1d31;
+  --rose: #d99a9e;
+  --gold: #d8b88c;
+  --text: #51434a;
+  --muted: #9b858d;
+  --border: #eadbd8;
+  --shadow: 0 18px 50px rgba(48, 19, 34, 0.12);
 }
 
 * {
@@ -21,14 +23,17 @@ html {
 }
 
 body {
-  background: var(--background);
+  background: #f8f0eb;
   color: var(--text);
   font-family: "DM Sans", sans-serif;
   line-height: 1.8;
 }
 
-button,
-a {
+body.locked {
+  overflow: hidden;
+}
+
+button, a {
   font: inherit;
 }
 
@@ -36,12 +41,159 @@ button {
   cursor: pointer;
 }
 
+/* ABERTURA */
+
+.opening {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  padding: 25px;
+  background:
+    radial-gradient(ellipse at 50% 45%, #382033 0%, #160e19 48%, #08070b 100%);
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 1s ease, visibility 1s ease;
+}
+
+.opening.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.opening::before,
+.opening::after {
+  content: "";
+  position: absolute;
+  width: 360px;
+  height: 360px;
+  border: 1px solid rgba(216, 184, 140, 0.12);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.opening::before {
+  width: 460px;
+  height: 460px;
+}
+
+.opening::after {
+  width: 600px;
+  height: 600px;
+}
+
+.opening-glow {
+  position: absolute;
+  width: 350px;
+  height: 350px;
+  border-radius: 50%;
+  background: rgba(195, 113, 133, 0.12);
+  filter: blur(100px);
+}
+
+.opening-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 550px;
+  text-align: center;
+  animation: appear 1.5s ease both;
+}
+
+.opening-eyebrow {
+  color: var(--gold);
+  font-size: 11px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+}
+
+.flower-frame {
+  display: grid;
+  place-items: center;
+  width: min(68vw, 340px);
+  height: min(68vw, 340px);
+  margin: 20px 0;
+  border-radius: 50%;
+  border: 1px solid rgba(216, 184, 140, 0.28);
+  background: radial-gradient(circle, rgba(255,255,255,0.06), transparent 68%);
+  animation: flowerFloat 5s ease-in-out infinite;
+}
+
+.opening-flower {
+  width: 88%;
+  height: 88%;
+  object-fit: contain;
+  filter: drop-shadow(0 12px 28px rgba(0,0,0,0.4));
+}
+
+.opening h1 {
+  color: #f7e9df;
+  font-family: "Playfair Display", serif;
+  font-size: clamp(43px, 8vw, 70px);
+  font-weight: 400;
+  line-height: 1.12;
+  letter-spacing: -1px;
+}
+
+.opening-content > p {
+  margin-top: 16px;
+  color: #cbb5b6;
+  font-family: "Playfair Display", serif;
+  font-size: 18px;
+  font-style: italic;
+}
+
+.enter-button {
+  margin-top: 34px;
+  padding: 14px 29px;
+  border: 1px solid rgba(216, 184, 140, 0.65);
+  border-radius: 40px;
+  background: rgba(255,255,255,0.04);
+  color: #f7e9df;
+  letter-spacing: 1px;
+  transition: 0.3s ease;
+}
+
+.enter-button span {
+  margin-left: 8px;
+  color: var(--rose);
+}
+
+.enter-button:hover {
+  background: rgba(216, 184, 140, 0.15);
+  transform: translateY(-3px);
+}
+
+.opening-footer {
+  margin-top: 45px;
+  color: #9c858e;
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+@keyframes flowerFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes appear {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* LIVRO */
+
 .container {
   width: min(100% - 40px, 1100px);
   margin: 0 auto;
 }
-
-/* INTRODUÇÃO */
 
 .intro {
   text-align: center;
@@ -50,25 +202,25 @@ button {
 
 .eyebrow {
   display: block;
-  color: var(--purple-light);
-  font-size: 13px;
+  color: var(--wine);
+  font-size: 12px;
   font-weight: 700;
   letter-spacing: 5px;
   text-transform: uppercase;
 }
 
 .intro h1 {
-  margin: 35px 0 20px;
-  color: var(--purple-dark);
+  margin: 30px 0 20px;
+  color: var(--wine-dark);
   font-family: "Playfair Display", serif;
   font-size: clamp(42px, 6vw, 68px);
   font-weight: 400;
-  line-height: 1.35;
+  line-height: 1.2;
 }
 
 .intro p {
   color: var(--muted);
-  font-size: 18px;
+  font-size: 16px;
 }
 
 /* ÍNDICE */
@@ -77,15 +229,15 @@ button {
   max-width: 900px;
   margin: 0 auto 65px;
   padding: 30px;
-  border: 1px solid rgba(255, 255, 255, 0.9);
-  border-radius: 25px;
-  background: rgba(255, 255, 255, 0.35);
+  border: 1px solid rgba(255,255,255,0.8);
+  border-radius: 22px;
+  background: rgba(255,255,255,0.58);
 }
 
 .index-section h2 {
   margin-bottom: 22px;
-  color: var(--purple);
-  font-size: 14px;
+  color: var(--wine);
+  font-size: 13px;
   letter-spacing: 4px;
   text-transform: uppercase;
 }
@@ -97,7 +249,6 @@ button {
 }
 
 .chapter-button {
-  display: block;
   width: 100%;
   padding: 15px 18px;
   border: 1px solid var(--border);
@@ -111,16 +262,16 @@ button {
 
 .chapter-button:hover,
 .chapter-button.active {
-  border-color: var(--purple-light);
-  background: #eee4f1;
-  color: var(--purple-dark);
+  border-color: var(--rose);
+  background: #f6e8e5;
+  color: var(--wine-dark);
 }
 
 .chapter-button.active {
   font-weight: 700;
 }
 
-/* ÁREA DE LEITURA */
+/* LEITURA */
 
 .reading-section {
   scroll-margin-top: 25px;
@@ -133,8 +284,8 @@ button {
   align-items: center;
   margin-bottom: 25px;
   padding: 0 18px;
-  color: var(--purple-light);
-  font-size: 14px;
+  color: var(--wine);
+  font-size: 13px;
   letter-spacing: 3px;
 }
 
@@ -148,21 +299,21 @@ button {
   box-shadow: var(--shadow);
 }
 
-/* PÁGINA DA IMAGEM */
+/* IMAGEM */
 
 .image-page {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 55px 35px 25px;
-  background: #fffafd;
+  background: #fffaf5;
   border-right: 1px solid var(--border);
 }
 
 .page-label {
-  margin-bottom: 40px;
+  margin-bottom: 35px;
   color: var(--muted);
-  font-size: 13px;
+  font-size: 12px;
   letter-spacing: 4px;
   text-transform: uppercase;
 }
@@ -175,7 +326,7 @@ button {
   display: block;
   width: 100%;
   height: auto;
-  border: 6px solid #f5edf3;
+  border: 6px solid #f3e8e1;
   object-fit: contain;
 }
 
@@ -189,10 +340,10 @@ button {
 .page-number {
   margin-top: auto;
   padding-top: 35px;
-  color: var(--purple-light);
+  color: var(--wine);
 }
 
-/* PÁGINA DO TEXTO */
+/* TEXTO */
 
 .text-page {
   padding: 65px 50px 45px;
@@ -200,7 +351,7 @@ button {
 
 .chapter-title {
   margin-bottom: 35px;
-  color: var(--purple-dark);
+  color: var(--wine-dark);
   font-family: "Playfair Display", serif;
   font-size: clamp(27px, 3vw, 39px);
   font-weight: 400;
@@ -215,10 +366,6 @@ button {
   text-align: left;
 }
 
-.chapter-body p:last-child {
-  margin-bottom: 0;
-}
-
 /* NAVEGAÇÃO */
 
 .navigation {
@@ -230,19 +377,19 @@ button {
 
 .nav-button {
   padding: 14px 24px;
-  border: 1px solid var(--purple-light);
+  border: 1px solid var(--wine);
   border-radius: 30px;
   transition: 0.25s ease;
 }
 
 .nav-button.primary {
-  background: var(--purple);
+  background: var(--wine);
   color: white;
 }
 
 .nav-button.secondary {
   background: transparent;
-  color: var(--purple);
+  color: var(--wine);
 }
 
 .nav-button:hover:not(:disabled) {
@@ -263,7 +410,7 @@ button {
   letter-spacing: 2px;
 }
 
-/* PÁGINA FINAL */
+/* ENCERRAMENTO */
 
 .closing-section {
   max-width: 760px;
@@ -271,13 +418,13 @@ button {
   padding: 65px 35px;
   border: 1px solid var(--border);
   border-radius: 22px;
-  background: rgba(255, 255, 255, 0.5);
+  background: rgba(255,255,255,0.58);
   text-align: center;
 }
 
 .closing-section h2 {
   margin: 25px 0;
-  color: var(--purple-dark);
+  color: var(--wine-dark);
   font-family: "Playfair Display", serif;
   font-size: 35px;
   font-weight: 400;
@@ -293,7 +440,7 @@ button {
   padding: 25px;
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
-  color: var(--purple-dark);
+  color: var(--wine-dark);
   font-family: "Playfair Display", serif;
   font-size: 22px;
   font-style: italic;
@@ -321,15 +468,15 @@ button {
   display: inline-block;
   margin: 10px;
   padding: 13px 25px;
-  border: 1px solid var(--purple-light);
+  border: 1px solid var(--wine);
   border-radius: 30px;
-  color: var(--purple);
+  color: var(--wine);
   text-decoration: none;
   transition: 0.2s ease;
 }
 
 .music-link:hover {
-  background: #eee4f1;
+  background: #f6e8e5;
 }
 
 .back-button {
@@ -337,7 +484,7 @@ button {
   margin: 25px auto 0;
   border: none;
   background: transparent;
-  color: var(--purple);
+  color: var(--wine);
   font-size: 14px;
 }
 
@@ -348,16 +495,15 @@ footer {
   text-align: center;
 }
 
-/* TABLETS */
+/* RESPONSIVIDADE */
 
 @media (max-width: 760px) {
-
   .container {
     width: min(100% - 32px, 650px);
   }
 
   .intro {
-    padding-top: 90px;
+    padding-top: 85px;
   }
 
   .book-page {
@@ -367,11 +513,7 @@ footer {
   .image-page {
     border-right: none;
     border-bottom: 1px solid var(--border);
-    padding: 45px 35px 30px;
-  }
-
-  .image-page img {
-    max-width: 100%;
+    padding: 40px 30px 25px;
   }
 
   .text-page {
@@ -383,51 +525,45 @@ footer {
   }
 }
 
-/* CELULARES */
-
 @media (max-width: 480px) {
-
   .container {
     width: calc(100% - 28px);
   }
 
   .intro {
-    padding: 85px 5px 55px;
+    padding: 75px 5px 50px;
   }
 
   .intro h1 {
-    margin-top: 30px;
     font-size: 43px;
-    line-height: 1.35;
   }
 
-  .intro p {
+  .opening-eyebrow {
+    font-size: 9px;
+    letter-spacing: 3px;
+  }
+
+  .opening-content > p {
     font-size: 16px;
   }
 
-  .eyebrow {
-    font-size: 11px;
-    letter-spacing: 4px;
+  .opening-footer {
+    font-size: 8px;
+    letter-spacing: 2px;
   }
 
   .index-section {
-    margin-bottom: 55px;
     padding: 25px 20px;
   }
 
   .reading-heading {
     padding: 0 8px;
-    font-size: 12px;
+    font-size: 11px;
     letter-spacing: 2px;
   }
 
   .image-page {
-    padding: 40px 20px 25px;
-  }
-
-  .page-label {
-    margin-bottom: 30px;
-    font-size: 11px;
+    padding: 35px 20px 25px;
   }
 
   .text-page {
@@ -443,13 +579,9 @@ footer {
     line-height: 1.9;
   }
 
-  .navigation {
-    gap: 10px;
-  }
-
   .nav-button {
     padding: 12px 15px;
-    font-size: 13px;
+    font-size: 12px;
   }
 
   .closing-section {
@@ -463,5 +595,13 @@ footer {
   .closing-section blockquote {
     padding: 20px 10px;
     font-size: 19px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
   }
 }
