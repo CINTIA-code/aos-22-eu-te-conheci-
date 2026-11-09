@@ -1,15 +1,16 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Capítulos de uma lembrança</title>
-  <meta name="description" content="Uma história contada por quem a viveu.">
+  <title>Aos 22, eu te conheci</title>
+  <meta name="description" content="Uma história sobre nós. Algumas lembranças permanecem.">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="style.css">
   <script src="script.js" defer></script>
@@ -17,20 +18,45 @@
 
 <body>
 
-  <main class="container">
+  <!-- TELA DE ABERTURA -->
+  <section class="opening" id="opening">
+    <div class="opening-glow"></div>
+
+    <div class="opening-content">
+      <span class="opening-eyebrow">Uma história sobre nós</span>
+
+      <div class="flower-frame">
+        <img
+          src="assets/flor-copo-de-leite.png"
+          alt="Flor copo-de-leite"
+          class="opening-flower"
+        >
+      </div>
+
+      <h1>Aos 22,<br>eu te conheci.</h1>
+
+      <p>Algumas histórias permanecem.</p>
+
+      <button id="enterBook" class="enter-button" type="button">
+        Entrar na história <span>♡</span>
+      </button>
+
+      <span class="opening-footer">Uma lembrança guardada em capítulos</span>
+    </div>
+  </section>
+
+  <!-- LIVRO -->
+  <main class="container" id="book">
 
     <header class="intro">
       <span class="eyebrow">A nossa história</span>
-
-      <h1>Capítulos de uma<br> lembrança</h1>
-
+      <h1>Aos 22,<br>eu te conheci.</h1>
       <p>Leia no seu tempo. Sem pressa.</p>
     </header>
 
     <section class="index-section" aria-label="Índice dos capítulos">
       <h2>Índice</h2>
-      <nav id="chapterList" class="chapter-list" aria-label="Capítulos">
-      </nav>
+      <nav id="chapterList" class="chapter-list" aria-label="Capítulos"></nav>
     </section>
 
     <section id="leitura" class="reading-section">
@@ -48,7 +74,7 @@
           <figure>
             <img
               id="chapterImage"
-              src="capitulo-1.png"
+              src="assets/capitulo-1(1).png"
               alt="Ilustração do primeiro capítulo"
             >
 
@@ -67,7 +93,6 @@
       </div>
 
       <div class="navigation">
-
         <button id="previousChapter" class="nav-button secondary" type="button" disabled>
           ← Anterior
         </button>
@@ -75,7 +100,6 @@
         <button id="nextChapter" class="nav-button primary" type="button">
           Próximo capítulo →
         </button>
-
       </div>
 
       <div class="page-counter">
