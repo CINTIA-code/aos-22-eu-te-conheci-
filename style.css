@@ -1,699 +1,254 @@
 
-:root {
-  --background: #100b12;
-  --background-soft: #1b111b;
-  --paper: #211720;
-  --wine: #713b50;
-  --wine-light: #a66b7c;
-  --rose: #d4a5a8;
-  --gold: #c9a879;
-  --cream: #f3e7dc;
-  --text: #e8dce0;
-  --muted: #aa929e;
-  --border: rgba(201, 168, 121, 0.22);
-  --shadow: 0 20px 70px rgba(0, 0, 0, 0.35);
+"use strict";
+
+// =====================================
+// CONTEÚDO DOS CAPÍTULOS
+// =====================================
+
+const chapters = [
+  {
+    title: "31 de dezembro de 2021",
+    paragraphs: [
+      "Era o fim de ano. Eu estava indo para a praça da cidade com alguns amigos para passar a virada. Você estava a caminho, e fui com uma colega te buscar.",
+
+      "Quando você me abraçou, eu fiquei tímida. Te achava muito bonita e, naquele instante, alguma coisa em mim pareceu prestar atenção em cada detalhe. Lembro dos nossos corpos se encostando e, principalmente, das nossas mãos. Elas se tocavam repetidas vezes, quase sem querer — ou talvez querendo.",
+
+      "Eu senti um calor por dentro. Pela primeira vez em muito tempo, tive a sensação de ser vista sem precisar fazer nada para merecer aquilo. Eu só precisava estar ali.",
+
+      "Gosto de imaginar que você também sentiu alguma coisa parecida. Mas essa parte da história só você poderia contar."
+    ],
+    image: "capitulo-1.png",
+    caption: "31 de dezembro de 2021"
+  },
+
+  {
+    title: "Desafios",
+    paragraphs: [
+      "Em 2022, com meus erros e minhas negligências, senti que perdi uma parte de você. O medo e a insegurança fizeram com que eu não soubesse cuidar de algumas oportunidades de viver um amor bonito. Reconheço o que foi meu, sem fingir que uma história inteira cabe na responsabilidade de uma pessoa só.",
+
+      "A gente tinha um humor tão nosso. Eu não me importava quando você me acordava no meio da noite ou bem cedinho, falando alto. Eu gostava de ouvir você contar, pela manhã, coisas que muitas vezes eu nem entendia.",
+
+      "Antes de ir trabalhar, você deitava em cima de mim por alguns minutos. Era uma das experiências mais bonitas que eu já tinha vivido. Parecia uma casinha. Uma felicidade pequena, cotidiana, mas enorme para mim.",
+
+      "Eu gostava dos seus cachos, da sua pele, dos seus olhos e do seu nariz. Gostava de você nos detalhes que talvez nem percebesse."
+    ],
+    image: "capitulo-2.png",
+    caption: "Os pequenos momentos da nossa rotina"
+  },
+
+  {
+    title: "Aos 24 anos",
+    paragraphs: [
+      "Eu me sentia quebrada, mas ainda queria mudar e tentar. Eu era jovem, não tinha muito apoio e não sabia como viver algumas coisas. Isso não é uma desculpa; é parte do contexto de quem eu era naquele momento.",
+
+      "Achei que conseguiria consertar tudo e mostrar que o amor também pode queimar sem machucar — pode ser calor, abrigo, aconchego. Eu queria que você sentisse isso comigo.",
+
+      "A gente ria, fazia piadas e tentava encontrar leveza mesmo nos dias difíceis. Nós duas tivemos momentos complicados, mas continuávamos tentando, porque acreditávamos que valia a pena.",
+
+      "Na minha lembrança, o amor entre nós não tinha ego ou vaidade. Éramos apenas nós."
+    ],
+    image: "capitulo-3.png",
+    caption: "Éramos apenas nós"
+  },
+
+  {
+    title: "Seus detalhes",
+    paragraphs: [
+      "Eu amei seus detalhes. Nos dias bons e nos dias ruins. Amei cada fase sua, desde quando você tinha 21 anos. E, mesmo quando as coisas mudavam, eu continuava encontrando beleza em você.",
+
+      "Queria ter sido mais compreensiva, mais amorosa, mais carinhosa e mais atenta. Ao mesmo tempo, eu também tinha 22 anos e nem sempre sabia acertar. Eu estava aprendendo a viver, a amar e a entender o que sentia.",
+
+      "Eu amava sua voz, as histórias que você repetia, seu rosto inchadinho de sono. Amava observar você no banho, lavando e enxaguando o cabelo. São lembranças pequenas que ficaram enormes dentro de mim.",
+
+      "Eu fantasiava sobre casamento entre duas mulheres. Imaginava que um dia seria sua esposa. Acompanhei tantas versões suas, dos 21 aos 27 anos, e espero que você tenha sentido ao menos um por cento do amor que eu tinha por você."
+    ],
+    image: "capitulo-4.png",
+    caption: "Seus detalhes"
+  },
+
+  {
+    title: "O fim",
+    paragraphs: [
+      "O fim é difícil porque não significa apenas deixar alguém. Às vezes, significa também abrir mão de desejos, planos e de uma vida que a gente chegou a imaginar com detalhes.",
+
+      "Eu queria ser sua esposinha. Acreditava no nosso casamento, na nossa casa, nas pequenas discussões sobre a rotina de morar juntas. Eu teria me casado com você, sem dúvida.",
+
+      "Talvez eu pudesse ter feito mais em alguns momentos. Talvez algumas coisas pudessem ter sido diferentes. Ainda assim, não quero transformar nossa história em uma lista de culpas. Ela foi feita de duas pessoas, de tentativas, de afeto, de falhas e de tudo o que vivemos.",
+
+      "Obrigada por ter existido na minha história. Você é especial e continuará sendo alguém que eu amo — romanticamente, como pessoa e como família. Eu sou uma parte da sua casa."
+    ],
+    image: "capitulo-5.png",
+    caption: "O que permanece"
+  }
+];
+
+// =====================================
+// ELEMENTOS DA PÁGINA
+// =====================================
+
+const chapterList = document.getElementById("chapterList");
+const chapterNumber = document.getElementById("chapterNumber");
+const chapterImage = document.getElementById("chapterImage");
+const chapterImageCaption = document.getElementById("chapterImageCaption");
+const chapterText = document.getElementById("chapterText");
+const chapterProgress = document.getElementById("chapterProgress");
+const pageNumber = document.getElementById("pageNumber");
+
+const previousButton = document.getElementById("previousChapter");
+const nextButton = document.getElementById("nextChapter");
+const startButton = document.getElementById("startReading");
+const backButton = document.getElementById("backToTop");
+
+let currentChapter = 0;
+
+// =====================================
+// CRIAR O ÍNDICE
+// =====================================
+
+function createChapterMenu() {
+  chapterList.innerHTML = "";
+
+  chapters.forEach((chapter, index) => {
+    const button = document.createElement("button");
+
+    button.type = "button";
+    button.className = "chapter-button";
+
+    button.textContent =
+      `${String(index + 1).padStart(2, "0")} · ${chapter.title}`;
+
+    button.addEventListener("click", () => {
+      renderChapter(index);
+
+      document.getElementById("leitura").scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+    });
+
+    chapterList.appendChild(button);
+  });
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+// =====================================
+// EXIBIR UM CAPÍTULO
+// =====================================
 
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  background: var(--background);
-  color: var(--text);
-  font-family: "DM Sans", sans-serif;
-  line-height: 1.8;
-}
-
-button,
-a {
-  font: inherit;
-}
-
-button {
-  cursor: pointer;
-}
-
-/* ABERTURA */
-
-.hero {
-  min-height: 100svh;
-  position: relative;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 70px 24px 65px;
-  isolation: isolate;
-  background:
-    radial-gradient(ellipse at 50% 48%, #422536 0%, #21131f 37%, #100b12 75%);
-  text-align: center;
-}
-
-.hero-glow {
-  position: absolute;
-  z-index: -1;
-  width: 500px;
-  height: 500px;
-  border-radius: 50%;
-  background: rgba(166, 107, 124, 0.15);
-  filter: blur(100px);
-}
-
-.hero-orbit {
-  position: absolute;
-  z-index: -1;
-  border: 1px solid rgba(201, 168, 121, 0.16);
-  border-radius: 50%;
-  pointer-events: none;
-}
-
-.orbit-one {
-  width: 570px;
-  height: 570px;
-}
-
-.orbit-two {
-  width: 720px;
-  height: 720px;
-}
-
-.hero-eyebrow,
-.hero-bottom {
-  color: var(--gold);
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 5px;
-}
-
-.hero-eyebrow {
-  margin-bottom: 25px;
-}
-
-.flower-container {
-  position: relative;
-  width: min(230px, 58vw);
-  height: 230px;
-  display: grid;
-  place-items: center;
-  margin-bottom: 5px;
-}
-
-.hero-flower {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  filter: drop-shadow(0 10px 35px rgba(212, 165, 168, 0.2));
-  animation: flowerAppear 2s ease both, flowerFloat 5s ease-in-out 2s infinite;
-}
-
-@keyframes flowerAppear {
-  from {
-    opacity: 0;
-    transform: translateY(25px) scale(0.85);
+function renderChapter(index) {
+  if (index < 0 || index >= chapters.length) {
+    return;
   }
 
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
+  currentChapter = index;
+
+  const chapter = chapters[index];
+
+  chapterNumber.textContent =
+    `CAPÍTULO ${String(index + 1).padStart(2, "0")}`;
+
+  chapterProgress.textContent =
+    `${index + 1} / ${chapters.length}`;
+
+  chapterText.innerHTML = `
+    <h2 class="chapter-title">${chapter.title}</h2>
+
+    <div class="chapter-body">
+      ${chapter.paragraphs
+        .map(paragraph => `<p>${paragraph}</p>`)
+        .join("")}
+    </div>
+  `;
+
+  chapterImage.src = chapter.image;
+  chapterImage.alt = `Ilustração: ${chapter.title}`;
+
+  chapterImageCaption.textContent = chapter.caption;
+
+  pageNumber.textContent =
+    String(index + 1).padStart(2, "0");
+
+  const buttons = document.querySelectorAll(".chapter-button");
+
+  buttons.forEach((button, buttonIndex) => {
+    const isActive = buttonIndex === index;
+
+    button.classList.toggle("active", isActive);
+
+    if (isActive) {
+      button.setAttribute("aria-current", "page");
+    } else {
+      button.removeAttribute("aria-current");
+    }
+  });
+
+  previousButton.disabled = index === 0;
+
+  nextButton.textContent =
+    index === chapters.length - 1
+      ? "Voltar ao início ↗"
+      : "Próximo capítulo →";
+}
+
+// =====================================
+// BOTÃO ANTERIOR
+// =====================================
+
+previousButton.addEventListener("click", () => {
+  if (currentChapter > 0) {
+    renderChapter(currentChapter - 1);
+
+    document.getElementById("leitura").scrollIntoView({
+      behavior: "smooth",
+      block: "start"
+    });
   }
-}
+});
 
-@keyframes flowerFloat {
-  0%, 100% {
-    transform: translateY(0);
+// =====================================
+// BOTÃO PRÓXIMO
+// =====================================
+
+nextButton.addEventListener("click", () => {
+  if (currentChapter < chapters.length - 1) {
+    renderChapter(currentChapter + 1);
+
+    document.getElementById("leitura").scrollIntoView({
+      behavior: "smooth",
+      block: "start"
+    });
+  } else {
+    document.getElementById("inicio").scrollIntoView({
+      behavior: "smooth",
+      block: "start"
+    });
   }
-
-  50% {
-    transform: translateY(-9px);
-  }
-}
-
-.hero-content {
-  position: relative;
-  z-index: 1;
-}
-
-.hero-pretitle {
-  color: var(--rose);
-  font-family: "Playfair Display", serif;
-  font-size: 15px;
-  font-style: italic;
-}
-
-.hero h1 {
-  margin: 12px 0 12px;
-  color: var(--cream);
-  font-family: "Playfair Display", serif;
-  font-size: clamp(54px, 8vw, 92px);
-  font-weight: 400;
-  line-height: 1.05;
-  letter-spacing: -3px;
-}
-
-.hero-subtitle {
-  margin-top: 15px;
-  color: var(--rose);
-  font-family: "Playfair Display", serif;
-  font-size: 19px;
-  font-style: italic;
-}
-
-.open-book {
-  display: inline-flex;
-  align-items: center;
-  gap: 18px;
-  margin-top: 35px;
-  padding: 14px 24px;
-  border: 1px solid var(--gold);
-  border-radius: 40px;
-  background: transparent;
-  color: var(--cream);
-  font-size: 13px;
-  letter-spacing: 1px;
-  transition: 0.3s ease;
-}
-
-.open-book:hover {
-  background: var(--gold);
-  color: #1a1115;
-  transform: translateY(-3px);
-}
-
-.button-arrow {
-  color: var(--gold);
-}
-
-.open-book:hover .button-arrow {
-  color: #1a1115;
-}
-
-.hero-decoration {
-  position: absolute;
-  right: 12%;
-  bottom: 22%;
-  color: var(--rose);
-  font-size: 35px;
-  opacity: 0.6;
-}
-
-.hero-bottom {
-  position: absolute;
-  bottom: 28px;
-  font-size: 9px;
-  letter-spacing: 4px;
-}
-
-/* INTRODUÇÃO */
-
-.introduction {
-  max-width: 720px;
-  margin: 0 auto;
-  padding: 115px 25px 105px;
-  text-align: center;
-}
-
-.section-eyebrow {
-  color: var(--gold);
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 5px;
-}
-
-.introduction h2,
-.section-heading h2,
-.closing-section h2 {
-  margin: 22px 0;
-  color: var(--cream);
-  font-family: "Playfair Display", serif;
-  font-size: clamp(32px, 5vw, 48px);
-  font-weight: 400;
-  line-height: 1.3;
-}
-
-.introduction p {
-  color: var(--muted);
-  font-size: 15px;
-}
-
-.small-heart {
-  display: block;
-  margin-top: 25px;
-  color: var(--rose);
-  font-size: 25px;
-}
-
-/* ÍNDICE */
-
-.index-section {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 65px 35px;
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-  text-align: center;
-}
-
-.section-heading {
-  margin-bottom: 35px;
-}
-
-.section-heading h2 {
-  margin-bottom: 8px;
-}
-
-.section-heading p {
-  color: var(--muted);
-  font-size: 14px;
-}
-
-.chapter-list {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
-}
-
-.chapter-button {
-  width: 100%;
-  padding: 17px 20px;
-  border: 1px solid var(--border);
-  border-radius: 5px;
-  background: rgba(255, 255, 255, 0.025);
-  color: var(--text);
-  font-size: 13px;
-  text-align: left;
-  transition: 0.25s ease;
-}
-
-.chapter-button:hover,
-.chapter-button.active {
-  border-color: var(--gold);
-  background: rgba(201, 168, 121, 0.09);
-  color: var(--cream);
-}
-
-.chapter-button.active {
-  font-weight: 700;
-}
-
-/* LEITURA */
-
-.reading-section {
-  max-width: 1120px;
-  margin: 0 auto;
-  padding: 100px 25px;
-  scroll-margin-top: 25px;
-}
-
-.reading-heading {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 22px;
-  color: var(--gold);
-  font-size: 11px;
-  letter-spacing: 3px;
-}
-
-.book-page {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  align-items: stretch;
-  overflow: hidden;
-  border: 1px solid var(--border);
-  border-radius: 5px;
-  background: var(--paper);
-  box-shadow: var(--shadow);
-}
-
-/* IMAGEM DO CAPÍTULO */
-
-.image-page {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 45px 35px 25px;
-  background: #191119;
-  border-right: 1px solid var(--border);
-}
-
-.page-label {
-  margin-bottom: 25px;
-  color: var(--gold);
-  font-size: 10px;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-}
-
-.image-page figure {
-  width: 100%;
-}
-
-.image-page img {
-  display: block;
-  width: 100%;
-  height: auto;
-  border: 5px solid rgba(201, 168, 121, 0.13);
-  object-fit: contain;
-}
-
-.image-page figcaption {
-  margin-top: 16px;
-  color: var(--muted);
-  font-family: "Playfair Display", serif;
-  font-size: 13px;
-  font-style: italic;
-  text-align: center;
-}
-
-.page-number {
-  margin-top: auto;
-  padding-top: 30px;
-  color: var(--gold);
-  font-size: 20px;
-}
-
-/* TEXTO DO CAPÍTULO */
-
-.text-page {
-  padding: 60px 48px 45px;
-}
-
-.chapter-title {
-  margin-bottom: 30px;
-  color: var(--cream);
-  font-family: "Playfair Display", serif;
-  font-size: clamp(28px, 3vw, 40px);
-  font-weight: 400;
-  line-height: 1.35;
-}
-
-.chapter-body p {
-  margin-bottom: 23px;
-  color: #d5c4cc;
-  font-size: 15px;
-  line-height: 2;
-  text-align: left;
-}
-
-.chapter-body p:last-child {
-  margin-bottom: 0;
-}
-
-/* NAVEGAÇÃO */
-
-.navigation {
-  display: flex;
-  justify-content: space-between;
-  gap: 15px;
-  margin-top: 28px;
-}
-
-.nav-button {
-  padding: 13px 22px;
-  border: 1px solid var(--gold);
-  border-radius: 30px;
-  transition: 0.25s ease;
-}
-
-.nav-button.primary {
-  background: var(--gold);
-  color: #21151a;
-}
-
-.nav-button.secondary {
-  background: transparent;
-  color: var(--cream);
-}
-
-.nav-button:hover:not(:disabled) {
-  transform: translateY(-2px);
-  opacity: 0.85;
-}
-
-.nav-button:disabled {
-  cursor: not-allowed;
-  opacity: 0.3;
-}
-
-.page-counter {
-  margin-top: 20px;
-  color: var(--muted);
-  font-size: 10px;
-  letter-spacing: 3px;
-  text-align: center;
-}
-
-/* ENCERRAMENTO */
-
-.closing-section {
-  max-width: 800px;
-  margin: 30px auto 100px;
-  padding: 75px 40px;
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-  text-align: center;
-}
-
-.closing-section h2 {
-  margin: 20px 0;
-}
-
-.closing-message {
-  color: var(--muted);
-  font-size: 15px;
-}
-
-.closing-flower {
-  width: 110px;
-  height: 110px;
-  margin: 30px auto;
-}
-
-.closing-flower img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  opacity: 0.8;
-}
-
-.closing-section blockquote {
-  margin: 35px 0;
-  padding: 28px 20px;
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-  color: var(--cream);
-  font-family: "Playfair Display", serif;
-  font-size: 21px;
-  font-style: italic;
-  line-height: 1.8;
-}
-
-.closing-section cite {
-  display: block;
-  margin-top: 14px;
-  color: var(--muted);
-  font-family: "DM Sans", sans-serif;
-  font-size: 10px;
-  font-style: normal;
-}
-
-.dedication {
-  max-width: 560px;
-  margin: 0 auto 30px;
-  color: #d5c4cc;
-  font-size: 14px;
-  line-height: 2;
-}
-
-.music-link {
-  display: inline-block;
-  margin: 10px;
-  padding: 12px 24px;
-  border: 1px solid var(--gold);
-  border-radius: 30px;
-  color: var(--cream);
-  font-size: 12px;
-  text-decoration: none;
-  transition: 0.2s ease;
-}
-
-.music-link:hover {
-  background: var(--gold);
-  color: #21151a;
-}
-
-.back-button {
-  display: block;
-  margin: 25px auto 0;
-  border: none;
-  background: transparent;
-  color: var(--rose);
-  font-size: 12px;
-}
-
-/* RODAPÉ */
-
-footer {
-  padding: 35px 20px 45px;
-  border-top: 1px solid var(--border);
-  color: var(--muted);
-  text-align: center;
-}
-
-footer span {
-  color: var(--gold);
-  font-size: 9px;
-  letter-spacing: 4px;
-}
-
-footer p {
-  margin-top: 8px;
-  font-family: "Playfair Display", serif;
-  font-size: 13px;
-  font-style: italic;
-}
-
-/* RESPONSIVIDADE */
-
-@media (max-width: 760px) {
-
-  .hero-orbit.orbit-one {
-    width: 420px;
-    height: 420px;
-  }
-
-  .hero-orbit.orbit-two {
-    width: 540px;
-    height: 540px;
-  }
-
-  .book-page {
-    grid-template-columns: 1fr;
-  }
-
-  .image-page {
-    border-right: none;
-    border-bottom: 1px solid var(--border);
-    padding: 35px 25px 25px;
-  }
-
-  .image-page img {
-    max-width: 500px;
-    margin: 0 auto;
-  }
-
-  .text-page {
-    padding: 40px 30px;
-  }
-
-  .chapter-list {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 480px) {
-
-  .hero {
-    padding: 65px 18px 60px;
-  }
-
-  .hero-eyebrow {
-    font-size: 9px;
-    letter-spacing: 3px;
-  }
-
-  .flower-container {
-    width: 190px;
-    height: 190px;
-  }
-
-  .hero h1 {
-    font-size: 57px;
-    letter-spacing: -2px;
-  }
-
-  .hero-subtitle {
-    font-size: 16px;
-  }
-
-  .hero-decoration {
-    right: 7%;
-    bottom: 15%;
-  }
-
-  .introduction {
-    padding: 80px 25px;
-  }
-
-  .introduction h2,
-  .section-heading h2,
-  .closing-section h2 {
-    font-size: 32px;
-  }
-
-  .index-section {
-    padding: 50px 22px;
-  }
-
-  .reading-section {
-    padding: 75px 15px;
-  }
-
-  .reading-heading {
-    font-size: 10px;
-    letter-spacing: 2px;
-  }
-
-  .image-page {
-    padding: 30px 17px 20px;
-  }
-
-  .text-page {
-    padding: 32px 23px;
-  }
-
-  .chapter-title {
-    font-size: 30px;
-  }
-
-  .chapter-body p {
-    font-size: 14px;
-    line-height: 1.9;
-  }
-
-  .navigation {
-    gap: 8px;
-  }
-
-  .nav-button {
-    padding: 11px 13px;
-    font-size: 12px;
-  }
-
-  .closing-section {
-    margin: 20px 18px 70px;
-    padding: 55px 22px;
-  }
-
-  .closing-section blockquote {
-    padding: 22px 8px;
-    font-size: 18px;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    scroll-behavior: auto !important;
-    animation-duration: 0.01ms !important;
-    transition-duration: 0.01ms !important;
-  }
-}
+});
+
+// =====================================
+// COMEÇAR A LEITURA
+// =====================================
+
+startButton.addEventListener("click", () => {
+  document.getElementById("leitura").scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+  });
+});
+
+// =====================================
+// VOLTAR AO INÍCIO
+// =====================================
+
+backButton.addEventListener("click", () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+});
+
+// =====================================
+// INICIALIZAÇÃO
+// =====================================
+
+createChapterMenu();
+renderChapter(0);
