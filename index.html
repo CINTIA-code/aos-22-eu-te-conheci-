@@ -5,12 +5,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Aos 22, eu te conheci</title>
-  <meta name="description" content="Uma história sobre nós. Algumas lembranças permanecem.">
+  <title>Aos 22, eu te conheci.</title>
+  <meta name="description" content="Uma história sobre nós. Algumas histórias permanecem.">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Parisienne&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="style.css">
   <script src="script.js" defer></script>
@@ -18,47 +18,72 @@
 
 <body>
 
-  <!-- TELA DE ABERTURA -->
-  <section class="opening" id="opening">
-    <div class="opening-glow"></div>
+  <main>
 
-    <div class="opening-content">
-      <span class="opening-eyebrow">Uma história sobre nós</span>
+    <!-- ABERTURA -->
+    <section class="hero" id="inicio">
 
-      <div class="flower-frame">
+      <div class="hero-glow"></div>
+      <div class="hero-orbit orbit-one"></div>
+      <div class="hero-orbit orbit-two"></div>
+
+      <span class="hero-eyebrow">UMA HISTÓRIA SOBRE NÓS</span>
+
+      <div class="flower-container">
         <img
-          src="assets/flor-copo-de-leite.png"
+          src="flor-copo-de-leite.png"
           alt="Flor copo-de-leite"
-          class="opening-flower"
+          class="hero-flower"
         >
       </div>
 
-      <h1>Aos 22,<br>eu te conheci.</h1>
+      <div class="hero-content">
+        <p class="hero-pretitle">Uma lembrança guardada no tempo</p>
 
-      <p>Algumas histórias permanecem.</p>
+        <h1>Aos 22,<br>eu te conheci.</h1>
 
-      <button id="enterBook" class="enter-button" type="button">
-        Entrar na história <span>♡</span>
-      </button>
+        <p class="hero-subtitle">Algumas histórias permanecem.</p>
 
-      <span class="opening-footer">Uma lembrança guardada em capítulos</span>
-    </div>
-  </section>
+        <button class="open-book" id="startReading" type="button">
+          <span>Entrar na nossa história</span>
+          <span class="button-arrow">↓</span>
+        </button>
+      </div>
 
-  <!-- LIVRO -->
-  <main class="container" id="book">
+      <span class="hero-decoration">♡</span>
+      <span class="hero-bottom">31 DE DEZEMBRO DE 2021</span>
 
-    <header class="intro">
-      <span class="eyebrow">A nossa história</span>
-      <h1>Aos 22,<br>eu te conheci.</h1>
-      <p>Leia no seu tempo. Sem pressa.</p>
-    </header>
-
-    <section class="index-section" aria-label="Índice dos capítulos">
-      <h2>Índice</h2>
-      <nav id="chapterList" class="chapter-list" aria-label="Capítulos"></nav>
     </section>
 
+    <!-- INTRODUÇÃO -->
+    <section class="introduction">
+      <span class="section-eyebrow">ANTES DE COMEÇAR</span>
+
+      <h2>Existem encontros que continuam vivendo na gente.</h2>
+
+      <p>
+        Esta é uma história feita de lembranças, detalhes, descobertas,
+        desafios e sentimentos. Leia no seu tempo. Sem pressa.
+      </p>
+
+      <span class="small-heart">♡</span>
+    </section>
+
+    <!-- ÍNDICE -->
+    <section class="index-section" aria-label="Índice dos capítulos">
+
+      <div class="section-heading">
+        <span class="section-eyebrow">O NOSSO LIVRO</span>
+        <h2>Capítulos</h2>
+        <p>Cinco partes de uma história que existiu.</p>
+      </div>
+
+      <nav id="chapterList" class="chapter-list" aria-label="Capítulos">
+      </nav>
+
+    </section>
+
+    <!-- LEITURA -->
     <section id="leitura" class="reading-section">
 
       <div class="reading-heading">
@@ -69,12 +94,13 @@
       <div class="book-page">
 
         <div class="image-page">
+
           <span class="page-label">Uma lembrança</span>
 
           <figure>
             <img
               id="chapterImage"
-              src="assets/capitulo-1(1).png"
+              src="capitulo-1.png"
               alt="Ilustração do primeiro capítulo"
             >
 
@@ -83,40 +109,62 @@
             </figcaption>
           </figure>
 
-          <span class="page-number">♥</span>
+          <span class="page-number">♡</span>
+
         </div>
 
         <article id="chapterText" class="text-page">
+
           <h2 class="chapter-title">31 de dezembro de 2021</h2>
+
         </article>
 
       </div>
 
       <div class="navigation">
-        <button id="previousChapter" class="nav-button secondary" type="button" disabled>
+
+        <button
+          id="previousChapter"
+          class="nav-button secondary"
+          type="button"
+          disabled
+        >
           ← Anterior
         </button>
 
-        <button id="nextChapter" class="nav-button primary" type="button">
+        <button
+          id="nextChapter"
+          class="nav-button primary"
+          type="button"
+        >
           Próximo capítulo →
         </button>
+
       </div>
 
       <div class="page-counter">
-        Página <span id="pageNumber">03</span>
+        CAPÍTULO <span id="pageNumber">01</span> · 05
       </div>
 
     </section>
 
+    <!-- ENCERRAMENTO -->
     <section class="closing-section">
 
-      <span class="eyebrow">Para guardar</span>
+      <span class="section-eyebrow">PARA GUARDAR</span>
 
       <h2>Algumas histórias permanecem.</h2>
 
       <p class="closing-message">
         Algumas histórias permanecem em nós, mesmo quando a vida nos leva adiante.
       </p>
+
+      <div class="closing-flower">
+        <img
+          src="flor-copo-de-leite.png"
+          alt="Flor copo-de-leite"
+        >
+      </div>
 
       <blockquote>
         “Eu teria saído do Éden para abrir a porta para você,
@@ -146,7 +194,8 @@
     </section>
 
     <footer>
-      <p>Feito com carinho.</p>
+      <span>FEITO COM CARINHO</span>
+      <p>Uma história. Cinco capítulos. Muitas lembranças. ♡</p>
     </footer>
 
   </main>
