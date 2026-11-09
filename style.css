@@ -1,295 +1,767 @@
 
-// ========================================
-// CONTEÚDO DOS CAPÍTULOS
-// ========================================
-
-const chapters = [
-  {
-    title: "31 de dezembro de 2021",
-    paragraphs: [
-      "Era o fim de ano. Eu estava indo para a praça da cidade com alguns amigos para passar a virada. Você estava a caminho, e fui com uma colega te buscar.",
-
-      "Quando você me abraçou, eu fiquei tímida. Te achava muito bonita e, naquele instante, alguma coisa em mim pareceu prestar atenção em cada detalhe. Lembro dos nossos corpos se encostando e, principalmente, das nossas mãos. Elas se tocavam repetidas vezes, quase sem querer — ou talvez querendo.",
-
-      "Eu senti um calor por dentro. Pela primeira vez em muito tempo, tive a sensação de ser vista sem precisar fazer nada para merecer aquilo. Eu só precisava estar ali.",
-
-      "Gosto de imaginar que você também sentiu alguma coisa parecida. Mas essa parte da história só você poderia contar."
-    ],
-    image: "capitulo-1.png",
-    caption: "31 de dezembro de 2021"
-  },
-
-  {
-    title: "Desafios",
-    paragraphs: [
-      "Em 2022, com meus erros e minhas negligências, senti que perdi uma parte de você. O medo e a insegurança fizeram com que eu não soubesse cuidar de algumas oportunidades de viver um amor bonito. Reconheço o que foi meu, sem fingir que uma história inteira cabe na responsabilidade de uma pessoa só.",
-
-      "A gente tinha um humor tão nosso. Eu não me importava quando você me acordava no meio da noite ou bem cedinho, falando alto. Eu gostava de ouvir você contar, pela manhã, coisas que muitas vezes eu nem entendia.",
-
-      "Antes de ir trabalhar, você deitava em cima de mim por alguns minutos. Era uma das experiências mais bonitas que eu já tinha vivido. Parecia uma casinha. Uma felicidade pequena, cotidiana, mas enorme para mim.",
-
-      "Eu gostava dos seus cachos, da sua pele, dos seus olhos e do seu nariz. Gostava de você nos detalhes que talvez nem percebesse."
-    ],
-    image: "capitulo-2.png",
-    caption: "Os pequenos momentos da nossa rotina"
-  },
-
-  {
-    title: "Aos 24 anos",
-    paragraphs: [
-      "Eu me sentia quebrada, mas ainda queria mudar e tentar. Eu era jovem, não tinha muito apoio e não sabia como viver algumas coisas. Isso não é uma desculpa; é parte do contexto de quem eu era naquele momento.",
-
-      "Achei que conseguiria consertar tudo e mostrar que o amor também pode queimar sem machucar — pode ser calor, abrigo, aconchego. Eu queria que você sentisse isso comigo.",
-
-      "A gente ria, fazia piadas e tentava encontrar leveza mesmo nos dias difíceis. Nós duas tivemos momentos complicados, mas continuávamos tentando, porque acreditávamos que valia a pena.",
-
-      "Na minha lembrança, o amor entre nós não tinha ego ou vaidade. Éramos apenas nós."
-    ],
-    image: "capitulo-3.png",
-    caption: "Éramos apenas nós"
-  },
-
-  {
-    title: "Seus detalhes",
-    paragraphs: [
-      "Eu amei seus detalhes. Nos dias bons e nos dias ruins. Amei cada fase sua, desde quando você tinha 21 anos. E, mesmo quando as coisas mudavam, eu continuava encontrando beleza em você.",
-
-      "Queria ter sido mais compreensiva, mais amorosa, mais carinhosa e mais atenta. Ao mesmo tempo, eu também tinha 22 anos e nem sempre sabia acertar. Eu estava aprendendo a viver, a amar e a entender o que sentia.",
-
-      "Eu amava sua voz, as histórias que você repetia, seu rosto inchadinho de sono. Amava observar você no banho, lavando e enxaguando o cabelo. São lembranças pequenas que ficaram enormes dentro de mim.",
-
-      "Eu fantasiava sobre casamento entre duas mulheres. Imaginava que um dia seria sua esposa. Acompanhei tantas versões suas, dos 21 aos 27 anos, e espero que você tenha sentido ao menos um por cento do amor que eu tinha por você."
-    ],
-    image: "capitulo-4.png",
-    caption: "Seus detalhes"
-  },
-
-  {
-    title: "O fim",
-    paragraphs: [
-      "O fim é difícil porque não significa apenas deixar alguém. Às vezes, significa também abrir mão de desejos, planos e de uma vida que a gente chegou a imaginar com detalhes.",
-
-      "Eu queria ser sua esposinha. Acreditava no nosso casamento, na nossa casa, nas pequenas discussões sobre a rotina de morar juntas. Eu teria me casado com você, sem dúvida.",
-
-      "Talvez eu pudesse ter feito mais em alguns momentos. Talvez algumas coisas pudessem ter sido diferentes. Ainda assim, não quero transformar nossa história em uma lista de culpas. Ela foi feita de duas pessoas, de tentativas, de afeto, de falhas e de tudo o que vivemos.",
-
-      "Obrigada por ter existido na minha história. Você é especial e continuará sendo alguém que eu amo — romanticamente, como pessoa e como família. Eu sou uma parte da sua casa."
-    ],
-    image: "capitulo-5.png",
-    caption: "O que permanece"
-  }
-];
-
-
-// ========================================
-// ELEMENTOS DO HTML
-// ========================================
-
-const opening = document.getElementById("cover");
-const enterButton = document.getElementById("startReading");
-
-const chapterList = document.getElementById("chapterList");
-const chapterNumber = document.getElementById("chapterNumber");
-const chapterImage = document.getElementById("chapterImage");
-const chapterImageCaption = document.getElementById("chapterImageCaption");
-const chapterText = document.getElementById("chapterText");
-const chapterProgress = document.getElementById("chapterProgress");
-const pageNumber = document.getElementById("pageNumber");
-
-const previousButton = document.getElementById("previousChapter");
-const nextButton = document.getElementById("nextChapter");
-const backButton = document.getElementById("backToTop");
-
-let currentChapter = 0;
-
-
-// ========================================
-// ABRIR A HISTÓRIA
-// ========================================
-
-enterButton.addEventListener("click", () => {
-
-  opening.classList.add("hidden");
-
-  document.body.classList.remove("locked");
-
-  setTimeout(() => {
-    opening.style.display = "none";
-
-    document.getElementById("book").scrollIntoView({
-      behavior: "smooth",
-      block: "start"
-    });
-
-  }, 1000);
-
-});
-
-
-// ========================================
-// CRIAR ÍNDICE DOS CAPÍTULOS
-// ========================================
-
-function createChapterMenu() {
-
-  chapterList.innerHTML = "";
-
-  chapters.forEach((chapter, index) => {
-
-    const button = document.createElement("button");
-
-    button.type = "button";
-    button.className = "chapter-button";
-
-    button.textContent =
-      `${String(index + 1).padStart(2, "0")} · ${chapter.title}`;
-
-    button.addEventListener("click", () => {
-
-      renderChapter(index);
-
-      document.getElementById("leitura").scrollIntoView({
-        behavior: "smooth",
-        block: "start"
-      });
-
-    });
-
-    chapterList.appendChild(button);
-
-  });
-
+:root {
+  --paper: #f7f0eb;
+  --paper-light: #fffaf6;
+  --rose: #c58e8c;
+  --rose-dark: #9c686b;
+  --wine: #583c43;
+  --ink: #413239;
+  --muted: #947f7c;
+  --line: #e7d8d1;
+  --serif: "Cormorant Garamond", Georgia, serif;
+  --sans: "DM Sans", Arial, sans-serif;
 }
 
-
-// ========================================
-// EXIBIR CAPÍTULO
-// ========================================
-
-function renderChapter(index) {
-
-  if (index < 0 || index >= chapters.length) return;
-
-  currentChapter = index;
-
-  const chapter = chapters[index];
-
-  chapterNumber.textContent =
-    `CAPÍTULO ${String(index + 1).padStart(2, "0")}`;
-
-  chapterProgress.textContent =
-    `${index + 1} / ${chapters.length}`;
-
-  chapterText.innerHTML = `
-    <h2 class="chapter-title">${chapter.title}</h2>
-
-    <div class="chapter-body">
-      ${chapter.paragraphs
-        .map(paragraph => `<p>${paragraph}</p>`)
-        .join("")}
-    </div>
-  `;
-
-  chapterImage.src = chapter.image;
-  chapterImage.alt = chapter.caption;
-
-  chapterImageCaption.textContent = chapter.caption;
-
-  pageNumber.textContent =
-    String((index * 2) + 3).padStart(2, "0");
-
-
-  // ATUALIZAR ÍNDICE
-
-  document.querySelectorAll(".chapter-button").forEach((button, i) => {
-
-    const active = i === index;
-
-    button.classList.toggle("active", active);
-
-    if (active) {
-      button.setAttribute("aria-current", "page");
-    } else {
-      button.removeAttribute("aria-current");
-    }
-
-  });
-
-
-  // ATUALIZAR BOTÕES
-
-  previousButton.disabled = index === 0;
-
-  nextButton.textContent =
-    index === chapters.length - 1
-      ? "Voltar ao início ↗"
-      : "Próximo capítulo →";
-
+* {
+  box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
 
-// ========================================
-// CAPÍTULO ANTERIOR
-// ========================================
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-weight: 300;
+}
 
-previousButton.addEventListener("click", () => {
+body.locked {
+  overflow: hidden;
+}
 
-  if (currentChapter > 0) {
+button,
+a {
+  font: inherit;
+}
 
-    renderChapter(currentChapter - 1);
+button {
+  cursor: pointer;
+}
 
-    document.getElementById("leitura").scrollIntoView({
-      behavior: "smooth",
-      block: "start"
-    });
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--rose-dark);
+  outline-offset: 5px;
+}
 
+[hidden] {
+  display: none !important;
+}
+
+/* CAPA */
+
+.cover {
+  position: relative;
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  padding: 55px 24px;
+  background:
+    radial-gradient(ellipse at 50% 42%, #fffaf6 0%, transparent 48%),
+    linear-gradient(145deg, #f8f1ed, #eee0dc);
+  transition: opacity .9s ease, transform .9s ease;
+}
+
+.cover.is-leaving {
+  opacity: 0;
+  transform: scale(1.035);
+  pointer-events: none;
+}
+
+.cover-content {
+  position: relative;
+  z-index: 2;
+  width: min(100%, 620px);
+  text-align: center;
+  animation: coverReveal 1.2s ease both;
+}
+
+.eyebrow,
+.section-kicker,
+.navigation-label,
+.progress-heading,
+.cover-footer,
+.cover-bottom-note {
+  font-size: 10px;
+  letter-spacing: .23em;
+  color: var(--muted);
+}
+
+.eyebrow {
+  margin-bottom: 26px;
+}
+
+.flower-container {
+  position: relative;
+  width: min(270px, 65vw);
+  height: 210px;
+  margin: 0 auto 12px;
+  display: grid;
+  place-items: center;
+}
+
+.cover-flower {
+  position: relative;
+  z-index: 1;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 15px 20px #77565b24);
+  animation: flowerFloat 5s ease-in-out infinite;
+}
+
+.flower-glow {
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  background: #dcb9b45c;
+  filter: blur(45px);
+}
+
+.cover h1 {
+  margin: 0;
+  color: var(--wine);
+  font: 500 clamp(54px, 9vw, 88px)/.87 var(--serif);
+  letter-spacing: -.045em;
+}
+
+.cover-subtitle {
+  margin: 25px 0 34px;
+  color: var(--muted);
+  font: italic 21px var(--serif);
+}
+
+.start-button {
+  min-width: 220px;
+  padding: 16px 25px;
+  border: 1px solid #b98a8a;
+  border-radius: 2px;
+  background: transparent;
+  color: var(--wine);
+  font-size: 11px;
+  letter-spacing: .12em;
+  transition: background .3s, color .3s, transform .3s;
+}
+
+.start-button span {
+  margin-left: 14px;
+  font-size: 17px;
+}
+
+.start-button:hover {
+  background: var(--wine);
+  color: white;
+  transform: translateY(-3px);
+}
+
+.cover-footer {
+  margin-top: 48px;
+  font-size: 9px;
+}
+
+.cover-footer span {
+  margin: 0 8px;
+  color: var(--rose);
+}
+
+.cover-bottom-note {
+  position: absolute;
+  bottom: 25px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  font-size: 8px;
+}
+
+.cover-bottom-note span {
+  color: var(--rose-dark);
+  font-size: 16px;
+}
+
+.cover-decoration {
+  position: absolute;
+  width: 350px;
+  height: 350px;
+  border: 1px solid #b98a8a20;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.decoration-one {
+  top: -190px;
+  left: -150px;
+}
+
+.decoration-two {
+  right: -200px;
+  bottom: -190px;
+  width: 500px;
+  height: 500px;
+}
+
+/* LIVRO */
+
+.book {
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+  background: var(--paper);
+  animation: bookReveal .9s ease both;
+}
+
+.book-header {
+  width: min(1120px, calc(100% - 48px));
+  min-height: 78px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--line);
+}
+
+.book-brand {
+  color: var(--wine);
+  text-decoration: none;
+  font: 500 20px var(--serif);
+}
+
+.book-brand span {
+  color: var(--rose-dark);
+  margin-right: 8px;
+}
+
+.music-button {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 10px 14px;
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--wine);
+  font-size: 10px;
+  letter-spacing: .08em;
+  transition: background .3s;
+}
+
+.music-button:hover,
+.music-button.is-playing {
+  background: #eadbd6;
+}
+
+.music-button > span:first-child {
+  font-size: 17px;
+}
+
+/* INTRODUÇÃO */
+
+.book-intro {
+  padding: 110px 20px 65px;
+  text-align: center;
+}
+
+.section-kicker {
+  font-size: 9px;
+}
+
+.book-intro h2,
+.closing-section h2 {
+  margin: 23px 0 15px;
+  color: var(--wine);
+  font: 500 clamp(56px, 8vw, 82px)/.85 var(--serif);
+  letter-spacing: -.04em;
+}
+
+.book-intro h2 em,
+.closing-section h2 em {
+  color: var(--rose-dark);
+  font-weight: 400;
+}
+
+.book-intro > p {
+  color: var(--muted);
+  font: italic 19px/1.6 var(--serif);
+}
+
+.intro-ornament,
+.chapter-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 35px;
+  color: var(--rose-dark);
+}
+
+.intro-ornament span,
+.chapter-divider span {
+  width: 45px;
+  height: 1px;
+  background: var(--line);
+}
+
+/* PROGRESSO */
+
+.reading-progress {
+  width: min(540px, calc(100% - 48px));
+  margin: 0 auto 65px;
+}
+
+.progress-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  margin-bottom: 12px;
+  font-size: 8px;
+  letter-spacing: .13em;
+}
+
+.progress-track {
+  height: 3px;
+  overflow: hidden;
+  background: #e6d9d3;
+}
+
+.progress-fill {
+  width: 0;
+  height: 100%;
+  background: var(--rose-dark);
+  transition: width .6s ease;
+}
+
+/* MENU DOS CAPÍTULOS */
+
+.chapter-navigation {
+  width: min(760px, calc(100% - 40px));
+  margin: auto;
+  text-align: center;
+}
+
+.navigation-label {
+  margin-bottom: 20px;
+  font-size: 8px;
+}
+
+.chapter-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 9px;
+}
+
+.chapter-tab {
+  padding: 11px 15px;
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--muted);
+  font-size: 10px;
+  letter-spacing: .05em;
+  transition: all .3s;
+}
+
+.chapter-tab:hover,
+.chapter-tab.active {
+  border-color: var(--wine);
+  background: var(--wine);
+  color: #fffaf6;
+}
+
+/* LEITURA */
+
+.reading-area {
+  width: min(760px, calc(100% - 40px));
+  margin: 95px auto 120px;
+}
+
+.reading-heading {
+  text-align: center;
+}
+
+.chapter-overline {
+  color: var(--rose-dark);
+  font-size: 9px;
+  letter-spacing: .22em;
+}
+
+.chapter-title {
+  margin: 17px 0 7px;
+  color: var(--wine);
+  font: 500 clamp(39px, 6vw, 58px)/1 var(--serif);
+}
+
+.chapter-subtitle {
+  margin: 0;
+  color: var(--muted);
+  font: italic 18px var(--serif);
+}
+
+.chapter-divider {
+  margin: 26px 0 40px;
+}
+
+.chapter-figure {
+  margin: 0 auto 48px;
+  text-align: center;
+}
+
+.chapter-image-frame {
+  width: min(100%, 590px);
+  margin: auto;
+  padding: 9px;
+  background: #fffaf6;
+  box-shadow: 0 15px 45px #4b303010;
+}
+
+.chapter-image {
+  display: block;
+  width: 100%;
+  max-height: 690px;
+  object-fit: contain;
+}
+
+.chapter-figure figcaption {
+  margin-top: 14px;
+  color: var(--muted);
+  font: italic 15px var(--serif);
+}
+
+.chapter-text {
+  width: min(100%, 620px);
+  margin: auto;
+  color: #57464a;
+  font: 400 19px/1.95 var(--serif);
+  text-align: left;
+}
+
+.chapter-text p {
+  margin: 0 0 25px;
+}
+
+.chapter-text p:first-child:first-letter {
+  float: left;
+  padding: 5px 8px 0 0;
+  color: var(--rose-dark);
+  font: 500 58px/.8 var(--serif);
+}
+
+.chapter-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  margin-top: 55px;
+  padding-top: 22px;
+  border-top: 1px solid var(--line);
+}
+
+.chapter-control {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 0;
+  border: 0;
+  background: transparent;
+  color: var(--wine);
+  font-size: 11px;
+  letter-spacing: .08em;
+}
+
+.chapter-control span {
+  font-size: 17px;
+}
+
+.chapter-control:disabled {
+  opacity: .3;
+  cursor: not-allowed;
+}
+
+.page-number {
+  color: var(--muted);
+  font-size: 10px;
+  letter-spacing: .12em;
+}
+
+/* TRANSIÇÃO DO CONTEÚDO */
+
+.reading-area.is-changing .reading-heading,
+.reading-area.is-changing .chapter-figure,
+.reading-area.is-changing .chapter-text {
+  animation: pageOut .25s ease both;
+}
+
+.reading-area.is-entering .reading-heading,
+.reading-area.is-entering .chapter-figure,
+.reading-area.is-entering .chapter-text {
+  animation: pageIn .65s ease both;
+}
+
+/* ENCERRAMENTO */
+
+.closing-section {
+  position: relative;
+  padding: 105px 24px 100px;
+  background: #efe2dd;
+  text-align: center;
+}
+
+.closing-flower {
+  margin-bottom: 25px;
+  color: var(--rose-dark);
+  font-size: 35px;
+}
+
+.closing-section h2 {
+  font-size: clamp(48px, 7vw, 70px);
+}
+
+.closing-ornament {
+  margin: 28px 0;
+  color: var(--rose-dark);
+  font-size: 25px;
+}
+
+.closing-message {
+  width: min(100%, 560px);
+  margin: auto;
+  color: #655257;
+  font: 400 19px/1.9 var(--serif);
+}
+
+.closing-message p {
+  margin: 0 0 22px;
+}
+
+.closing-quote {
+  width: min(100%, 500px);
+  margin: 65px auto;
+  padding: 25px;
+  border-top: 1px solid #d8c3bd;
+  border-bottom: 1px solid #d8c3bd;
+}
+
+.closing-quote p {
+  color: var(--wine);
+  font: italic 27px/1.3 var(--serif);
+}
+
+.closing-quote cite {
+  color: var(--muted);
+  font-size: 9px;
+  letter-spacing: .12em;
+  font-style: normal;
+}
+
+.dedication {
+  margin: 65px auto 45px;
+}
+
+.dedication > span:first-child {
+  color: var(--muted);
+  font-size: 9px;
+  letter-spacing: .2em;
+}
+
+.dedication p {
+  color: var(--wine);
+  font: italic 25px/1.4 var(--serif);
+}
+
+.dedication-heart {
+  color: var(--rose-dark);
+  font-size: 24px;
+}
+
+.closing-music-link {
+  display: table;
+  margin: 35px auto;
+  padding: 15px 22px;
+  border: 1px solid #c5a29d;
+  color: var(--wine);
+  text-decoration: none;
+  font-size: 10px;
+  letter-spacing: .08em;
+  transition: background .3s, color .3s;
+}
+
+.closing-music-link:hover {
+  background: var(--wine);
+  color: white;
+}
+
+.back-to-top {
+  display: block;
+  margin: 55px auto 0;
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  font-size: 10px;
+  letter-spacing: .1em;
+}
+
+.back-to-top:hover {
+  color: var(--wine);
+}
+
+/* RODAPÉ */
+
+.book-footer {
+  padding: 40px 20px;
+  background: var(--wine);
+  color: #f8eee8;
+  text-align: center;
+}
+
+.book-footer > span {
+  color: #d7aaa6;
+  font-size: 21px;
+}
+
+.book-footer p {
+  font: italic 19px var(--serif);
+}
+
+.book-footer small {
+  color: #d6bfc0;
+  font-size: 8px;
+  letter-spacing: .2em;
+}
+
+/* ANIMAÇÕES */
+
+@keyframes coverReveal {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes flowerFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-9px); }
+}
+
+@keyframes bookReveal {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes pageOut {
+  to { opacity: 0; transform: translateY(8px); }
+}
+
+@keyframes pageIn {
+  from { opacity: 0; transform: translateY(13px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* CELULAR */
+
+@media (max-width: 600px) {
+  .cover {
+    padding: 40px 20px;
   }
 
-});
-
-
-// ========================================
-// PRÓXIMO CAPÍTULO
-// ========================================
-
-nextButton.addEventListener("click", () => {
-
-  if (currentChapter < chapters.length - 1) {
-
-    renderChapter(currentChapter + 1);
-
-  } else {
-
-    renderChapter(0);
-
+  .flower-container {
+    height: 175px;
+    margin-bottom: 18px;
   }
 
-  document.getElementById("leitura").scrollIntoView({
-    behavior: "smooth",
-    block: "start"
-  });
+  .cover h1 {
+    font-size: clamp(53px, 15vw, 72px);
+  }
 
-});
+  .cover-subtitle {
+    font-size: 18px;
+  }
 
+  .cover-footer {
+    margin-top: 38px;
+  }
 
-// ========================================
-// VOLTAR AO TOPO
-// ========================================
+  .book-header {
+    width: calc(100% - 32px);
+    min-height: 68px;
+  }
 
-backButton.addEventListener("click", () => {
+  .book-brand {
+    font-size: 16px;
+  }
 
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth"
-  });
+  .music-button {
+    padding: 9px;
+    gap: 6px;
+    font-size: 9px;
+  }
 
-});
+  .book-intro {
+    padding: 85px 15px 50px;
+  }
 
+  .book-intro h2 {
+    font-size: 65px;
+  }
 
-// ========================================
-// INICIALIZAÇÃO
-// ========================================
+  .progress-heading {
+    font-size: 7px;
+  }
 
-createChapterMenu();
+  .chapter-list {
+    gap: 7px;
+  }
 
-renderChapter(0);
+  .chapter-tab {
+    padding: 10px 11px;
+    font-size: 9px;
+  }
+
+  .reading-area {
+    margin-top: 75px;
+    margin-bottom: 85px;
+  }
+
+  .chapter-title {
+    font-size: 43px;
+  }
+
+  .chapter-text {
+    font-size: 18px;
+    line-height: 1.85;
+  }
+
+  .chapter-image-frame {
+    padding: 6px;
+  }
+
+  .chapter-controls {
+    margin-top: 40px;
+  }
+
+  .chapter-control {
+    font-size: 10px;
+  }
+
+  .closing-section {
+    padding: 80px 22px;
+  }
+
+  .closing-message {
+    font-size: 18px;
+  }
+
+  .closing-quote p {
+    font-size: 23px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+}
