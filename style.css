@@ -1,254 +1,679 @@
-
-"use strict";
-
-// =====================================
-// CONTEÚDO DOS CAPÍTULOS
-// =====================================
-
-const chapters = [
-  {
-    title: "31 de dezembro de 2021",
-    paragraphs: [
-      "Era o fim de ano. Eu estava indo para a praça da cidade com alguns amigos para passar a virada. Você estava a caminho, e fui com uma colega te buscar.",
-
-      "Quando você me abraçou, eu fiquei tímida. Te achava muito bonita e, naquele instante, alguma coisa em mim pareceu prestar atenção em cada detalhe. Lembro dos nossos corpos se encostando e, principalmente, das nossas mãos. Elas se tocavam repetidas vezes, quase sem querer — ou talvez querendo.",
-
-      "Eu senti um calor por dentro. Pela primeira vez em muito tempo, tive a sensação de ser vista sem precisar fazer nada para merecer aquilo. Eu só precisava estar ali.",
-
-      "Gosto de imaginar que você também sentiu alguma coisa parecida. Mas essa parte da história só você poderia contar."
-    ],
-    image: "capitulo-1.png",
-    caption: "31 de dezembro de 2021"
-  },
-
-  {
-    title: "Desafios",
-    paragraphs: [
-      "Em 2022, com meus erros e minhas negligências, senti que perdi uma parte de você. O medo e a insegurança fizeram com que eu não soubesse cuidar de algumas oportunidades de viver um amor bonito. Reconheço o que foi meu, sem fingir que uma história inteira cabe na responsabilidade de uma pessoa só.",
-
-      "A gente tinha um humor tão nosso. Eu não me importava quando você me acordava no meio da noite ou bem cedinho, falando alto. Eu gostava de ouvir você contar, pela manhã, coisas que muitas vezes eu nem entendia.",
-
-      "Antes de ir trabalhar, você deitava em cima de mim por alguns minutos. Era uma das experiências mais bonitas que eu já tinha vivido. Parecia uma casinha. Uma felicidade pequena, cotidiana, mas enorme para mim.",
-
-      "Eu gostava dos seus cachos, da sua pele, dos seus olhos e do seu nariz. Gostava de você nos detalhes que talvez nem percebesse."
-    ],
-    image: "capitulo-2.png",
-    caption: "Os pequenos momentos da nossa rotina"
-  },
-
-  {
-    title: "Aos 24 anos",
-    paragraphs: [
-      "Eu me sentia quebrada, mas ainda queria mudar e tentar. Eu era jovem, não tinha muito apoio e não sabia como viver algumas coisas. Isso não é uma desculpa; é parte do contexto de quem eu era naquele momento.",
-
-      "Achei que conseguiria consertar tudo e mostrar que o amor também pode queimar sem machucar — pode ser calor, abrigo, aconchego. Eu queria que você sentisse isso comigo.",
-
-      "A gente ria, fazia piadas e tentava encontrar leveza mesmo nos dias difíceis. Nós duas tivemos momentos complicados, mas continuávamos tentando, porque acreditávamos que valia a pena.",
-
-      "Na minha lembrança, o amor entre nós não tinha ego ou vaidade. Éramos apenas nós."
-    ],
-    image: "capitulo-3.png",
-    caption: "Éramos apenas nós"
-  },
-
-  {
-    title: "Seus detalhes",
-    paragraphs: [
-      "Eu amei seus detalhes. Nos dias bons e nos dias ruins. Amei cada fase sua, desde quando você tinha 21 anos. E, mesmo quando as coisas mudavam, eu continuava encontrando beleza em você.",
-
-      "Queria ter sido mais compreensiva, mais amorosa, mais carinhosa e mais atenta. Ao mesmo tempo, eu também tinha 22 anos e nem sempre sabia acertar. Eu estava aprendendo a viver, a amar e a entender o que sentia.",
-
-      "Eu amava sua voz, as histórias que você repetia, seu rosto inchadinho de sono. Amava observar você no banho, lavando e enxaguando o cabelo. São lembranças pequenas que ficaram enormes dentro de mim.",
-
-      "Eu fantasiava sobre casamento entre duas mulheres. Imaginava que um dia seria sua esposa. Acompanhei tantas versões suas, dos 21 aos 27 anos, e espero que você tenha sentido ao menos um por cento do amor que eu tinha por você."
-    ],
-    image: "capitulo-4.png",
-    caption: "Seus detalhes"
-  },
-
-  {
-    title: "O fim",
-    paragraphs: [
-      "O fim é difícil porque não significa apenas deixar alguém. Às vezes, significa também abrir mão de desejos, planos e de uma vida que a gente chegou a imaginar com detalhes.",
-
-      "Eu queria ser sua esposinha. Acreditava no nosso casamento, na nossa casa, nas pequenas discussões sobre a rotina de morar juntas. Eu teria me casado com você, sem dúvida.",
-
-      "Talvez eu pudesse ter feito mais em alguns momentos. Talvez algumas coisas pudessem ter sido diferentes. Ainda assim, não quero transformar nossa história em uma lista de culpas. Ela foi feita de duas pessoas, de tentativas, de afeto, de falhas e de tudo o que vivemos.",
-
-      "Obrigada por ter existido na minha história. Você é especial e continuará sendo alguém que eu amo — romanticamente, como pessoa e como família. Eu sou uma parte da sua casa."
-    ],
-    image: "capitulo-5.png",
-    caption: "O que permanece"
-  }
-];
-
-// =====================================
-// ELEMENTOS DA PÁGINA
-// =====================================
-
-const chapterList = document.getElementById("chapterList");
-const chapterNumber = document.getElementById("chapterNumber");
-const chapterImage = document.getElementById("chapterImage");
-const chapterImageCaption = document.getElementById("chapterImageCaption");
-const chapterText = document.getElementById("chapterText");
-const chapterProgress = document.getElementById("chapterProgress");
-const pageNumber = document.getElementById("pageNumber");
-
-const previousButton = document.getElementById("previousChapter");
-const nextButton = document.getElementById("nextChapter");
-const startButton = document.getElementById("startReading");
-const backButton = document.getElementById("backToTop");
-
-let currentChapter = 0;
-
-// =====================================
-// CRIAR O ÍNDICE
-// =====================================
-
-function createChapterMenu() {
-  chapterList.innerHTML = "";
-
-  chapters.forEach((chapter, index) => {
-    const button = document.createElement("button");
-
-    button.type = "button";
-    button.className = "chapter-button";
-
-    button.textContent =
-      `${String(index + 1).padStart(2, "0")} · ${chapter.title}`;
-
-    button.addEventListener("click", () => {
-      renderChapter(index);
-
-      document.getElementById("leitura").scrollIntoView({
-        behavior: "smooth",
-        block: "start"
-      });
-    });
-
-    chapterList.appendChild(button);
-  });
+:root {
+  --background: #100b12;
+  --background-soft: #1b101c;
+  --paper: #fffaf5;
+  --purple: #9b7895;
+  --purple-light: #c5a6b8;
+  --gold: #c5a77c;
+  --text: #514656;
+  --muted: #9a8c9e;
+  --border: #eadfeb;
+  --shadow: 0 12px 35px rgba(81, 55, 91, 0.07);
 }
 
-// =====================================
-// EXIBIR UM CAPÍTULO
-// =====================================
-
-function renderChapter(index) {
-  if (index < 0 || index >= chapters.length) {
-    return;
-  }
-
-  currentChapter = index;
-
-  const chapter = chapters[index];
-
-  chapterNumber.textContent =
-    `CAPÍTULO ${String(index + 1).padStart(2, "0")}`;
-
-  chapterProgress.textContent =
-    `${index + 1} / ${chapters.length}`;
-
-  chapterText.innerHTML = `
-    <h2 class="chapter-title">${chapter.title}</h2>
-
-    <div class="chapter-body">
-      ${chapter.paragraphs
-        .map(paragraph => `<p>${paragraph}</p>`)
-        .join("")}
-    </div>
-  `;
-
-  chapterImage.src = chapter.image;
-  chapterImage.alt = `Ilustração: ${chapter.title}`;
-
-  chapterImageCaption.textContent = chapter.caption;
-
-  pageNumber.textContent =
-    String(index + 1).padStart(2, "0");
-
-  const buttons = document.querySelectorAll(".chapter-button");
-
-  buttons.forEach((button, buttonIndex) => {
-    const isActive = buttonIndex === index;
-
-    button.classList.toggle("active", isActive);
-
-    if (isActive) {
-      button.setAttribute("aria-current", "page");
-    } else {
-      button.removeAttribute("aria-current");
-    }
-  });
-
-  previousButton.disabled = index === 0;
-
-  nextButton.textContent =
-    index === chapters.length - 1
-      ? "Voltar ao início ↗"
-      : "Próximo capítulo →";
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-// =====================================
-// BOTÃO ANTERIOR
-// =====================================
+html {
+  scroll-behavior: smooth;
+}
 
-previousButton.addEventListener("click", () => {
-  if (currentChapter > 0) {
-    renderChapter(currentChapter - 1);
+body {
+  background: var(--background);
+  color: var(--text);
+  font-family: "DM Sans", sans-serif;
+  line-height: 1.8;
+}
 
-    document.getElementById("leitura").scrollIntoView({
-      behavior: "smooth",
-      block: "start"
-    });
+button,
+a {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+
+/* ==============================
+   ABERTURA
+============================== */
+
+.cover {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100svh;
+  overflow: hidden;
+  padding: 50px 20px;
+  background:
+    radial-gradient(
+      ellipse at 50% 43%,
+      rgba(133, 75, 112, 0.30),
+      transparent 48%
+    ),
+    linear-gradient(145deg, #100b12, #241321 55%, #100b12);
+  color: #f7e9df;
+  text-align: center;
+}
+
+.cover::before,
+.cover::after {
+  position: absolute;
+  content: "";
+  width: 520px;
+  height: 520px;
+  border: 1px solid rgba(197, 167, 124, 0.16);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.cover::before {
+  width: 600px;
+  height: 600px;
+}
+
+.cover::after {
+  width: 440px;
+  height: 440px;
+}
+
+.cover-decoration {
+  position: absolute;
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(
+    transparent,
+    rgba(197, 167, 124, 0.2),
+    transparent
+  );
+}
+
+.decoration-one {
+  left: 10%;
+}
+
+.decoration-two {
+  right: 10%;
+}
+
+.cover-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 700px;
+  animation: appear 1.5s ease both;
+}
+
+.eyebrow {
+  display: block;
+  color: var(--gold);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+}
+
+.flower-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: min(320px, 75vw);
+  height: 320px;
+  margin: 28px auto 5px;
+}
+
+.flower-glow {
+  position: absolute;
+  width: 230px;
+  height: 230px;
+  border-radius: 50%;
+  background: rgba(194, 135, 163, 0.18);
+  filter: blur(65px);
+}
+
+.cover-flower {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 10px 35px rgba(0, 0, 0, 0.35));
+  animation: flowerFloat 5s ease-in-out infinite;
+}
+
+.cover h1 {
+  margin: 12px 0 15px;
+  color: #f6e8dc;
+  font-family: "Playfair Display", serif;
+  font-size: clamp(44px, 7vw, 76px);
+  font-weight: 400;
+  line-height: 1.12;
+}
+
+.cover-subtitle {
+  margin-bottom: 32px;
+  color: #c9b4c0;
+  font-family: "Playfair Display", serif;
+  font-size: 19px;
+  font-style: italic;
+}
+
+.start-button {
+  padding: 14px 29px;
+  border: 1px solid rgba(197, 167, 124, 0.65);
+  border-radius: 40px;
+  background: rgba(255, 255, 255, 0.04);
+  color: #f5e8dd;
+  font-size: 13px;
+  letter-spacing: 1px;
+  transition: 0.3s ease;
+}
+
+.start-button span {
+  margin-left: 8px;
+  color: #d7a9b9;
+}
+
+.start-button:hover {
+  transform: translateY(-3px);
+  background: rgba(197, 167, 124, 0.15);
+}
+
+.cover-footer {
+  display: block;
+  margin-top: 55px;
+  color: rgba(245, 232, 221, 0.42);
+  font-size: 9px;
+  letter-spacing: 4px;
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
   }
-});
 
-// =====================================
-// BOTÃO PRÓXIMO
-// =====================================
-
-nextButton.addEventListener("click", () => {
-  if (currentChapter < chapters.length - 1) {
-    renderChapter(currentChapter + 1);
-
-    document.getElementById("leitura").scrollIntoView({
-      behavior: "smooth",
-      block: "start"
-    });
-  } else {
-    document.getElementById("inicio").scrollIntoView({
-      behavior: "smooth",
-      block: "start"
-    });
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-});
+}
 
-// =====================================
-// COMEÇAR A LEITURA
-// =====================================
+@keyframes flowerFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
 
-startButton.addEventListener("click", () => {
-  document.getElementById("leitura").scrollIntoView({
-    behavior: "smooth",
-    block: "start"
-  });
-});
+  50% {
+    transform: translateY(-12px);
+  }
+}
 
-// =====================================
-// VOLTAR AO INÍCIO
-// =====================================
 
-backButton.addEventListener("click", () => {
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth"
-  });
-});
+/* ==============================
+   LIVRO
+============================== */
 
-// =====================================
-// INICIALIZAÇÃO
-// =====================================
+.container {
+  width: min(100% - 40px, 1100px);
+  margin: 0 auto;
+  padding-top: 20px;
+}
 
-createChapterMenu();
-renderChapter(0);
+#book {
+  display: none;
+  animation: appear 1s ease both;
+}
+
+.intro {
+  text-align: center;
+  padding: 105px 20px 65px;
+}
+
+.intro h2 {
+  margin: 35px 0 20px;
+  color: var(--purple-dark, #594367);
+  font-family: "Playfair Display", serif;
+  font-size: clamp(42px, 6vw, 68px);
+  font-weight: 400;
+  line-height: 1.35;
+}
+
+.intro p {
+  color: var(--muted);
+  font-size: 18px;
+}
+
+
+/* ==============================
+   ÍNDICE
+============================== */
+
+.index-section {
+  max-width: 900px;
+  margin: 0 auto 65px;
+  padding: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  border-radius: 25px;
+  background: rgba(255, 255, 255, 0.35);
+}
+
+.index-section h2 {
+  margin-bottom: 22px;
+  color: var(--purple);
+  font-size: 14px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+}
+
+.chapter-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.chapter-button {
+  display: block;
+  width: 100%;
+  padding: 15px 18px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--paper);
+  color: var(--text);
+  font-size: 14px;
+  text-align: left;
+  transition: 0.25s ease;
+}
+
+.chapter-button:hover,
+.chapter-button.active {
+  border-color: var(--purple-light);
+  background: #eee4f1;
+  color: #594367;
+}
+
+.chapter-button.active {
+  font-weight: 700;
+}
+
+
+/* ==============================
+   ÁREA DE LEITURA
+============================== */
+
+.reading-section {
+  scroll-margin-top: 25px;
+  padding-bottom: 75px;
+}
+
+.reading-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+  padding: 0 18px;
+  color: var(--purple-light);
+  font-size: 14px;
+  letter-spacing: 3px;
+}
+
+.book-page {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: stretch;
+  overflow: hidden;
+  border-radius: 12px;
+  background: var(--paper);
+  box-shadow: var(--shadow);
+}
+
+
+/* IMAGEM */
+
+.image-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 55px 35px 25px;
+  background: #fffafd;
+  border-right: 1px solid var(--border);
+}
+
+.page-label {
+  margin-bottom: 40px;
+  color: var(--muted);
+  font-size: 13px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+}
+
+.image-page figure {
+  width: 100%;
+}
+
+.image-page img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 6px solid #f5edf3;
+  object-fit: contain;
+}
+
+.image-page figcaption {
+  margin-top: 18px;
+  color: var(--muted);
+  font-size: 13px;
+  text-align: center;
+}
+
+.page-number {
+  margin-top: auto;
+  padding-top: 35px;
+  color: var(--purple-light);
+}
+
+
+/* TEXTO */
+
+.text-page {
+  padding: 65px 50px 45px;
+}
+
+.chapter-title {
+  margin-bottom: 35px;
+  color: #594367;
+  font-family: "Playfair Display", serif;
+  font-size: clamp(27px, 3vw, 39px);
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+.chapter-body p {
+  margin-bottom: 24px;
+  color: var(--text);
+  font-size: 16px;
+  line-height: 2;
+  text-align: left;
+}
+
+.chapter-body p:last-child {
+  margin-bottom: 0;
+}
+
+
+/* ==============================
+   NAVEGAÇÃO
+============================== */
+
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  margin-top: 30px;
+}
+
+.nav-button {
+  padding: 14px 24px;
+  border: 1px solid var(--purple-light);
+  border-radius: 30px;
+  transition: 0.25s ease;
+}
+
+.nav-button.primary {
+  background: #71577d;
+  color: white;
+}
+
+.nav-button.secondary {
+  background: transparent;
+  color: #71577d;
+}
+
+.nav-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  opacity: 0.85;
+}
+
+.nav-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.35;
+}
+
+.page-counter {
+  margin-top: 20px;
+  color: var(--muted);
+  font-size: 12px;
+  text-align: center;
+  letter-spacing: 2px;
+}
+
+
+/* ==============================
+   ENCERRAMENTO
+============================== */
+
+.closing-section {
+  max-width: 760px;
+  margin: 40px auto 90px;
+  padding: 65px 35px;
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.5);
+  text-align: center;
+}
+
+.closing-section h2 {
+  margin: 25px 0;
+  color: #594367;
+  font-family: "Playfair Display", serif;
+  font-size: 35px;
+  font-weight: 400;
+}
+
+.closing-message {
+  color: var(--text);
+  font-size: 16px;
+}
+
+.closing-section blockquote {
+  margin: 45px 0;
+  padding: 25px;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  color: #594367;
+  font-family: "Playfair Display", serif;
+  font-size: 22px;
+  font-style: italic;
+  line-height: 1.8;
+}
+
+.closing-section cite {
+  display: block;
+  margin-top: 15px;
+  color: var(--muted);
+  font-family: "DM Sans", sans-serif;
+  font-size: 12px;
+  font-style: normal;
+}
+
+.dedication {
+  max-width: 550px;
+  margin: 0 auto 35px;
+  color: var(--text);
+  font-size: 15px;
+  line-height: 2;
+}
+
+.music-link {
+  display: inline-block;
+  margin: 10px;
+  padding: 13px 25px;
+  border: 1px solid var(--purple-light);
+  border-radius: 30px;
+  color: #71577d;
+  text-decoration: none;
+  transition: 0.2s ease;
+}
+
+.music-link:hover {
+  background: #eee4f1;
+}
+
+.back-button {
+  display: block;
+  margin: 25px auto 0;
+  border: none;
+  background: transparent;
+  color: #71577d;
+  font-size: 14px;
+}
+
+footer {
+  padding: 30px;
+  color: var(--muted);
+  font-size: 12px;
+  text-align: center;
+}
+
+
+/* ==============================
+   RESPONSIVIDADE
+============================== */
+
+@media (max-width: 760px) {
+
+  .container {
+    width: min(100% - 32px, 650px);
+  }
+
+  .intro {
+    padding-top: 90px;
+  }
+
+  .book-page {
+    grid-template-columns: 1fr;
+  }
+
+  .image-page {
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+    padding: 45px 35px 30px;
+  }
+
+  .image-page img {
+    max-width: 100%;
+  }
+
+  .text-page {
+    padding: 45px 35px;
+  }
+
+  .chapter-list {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+@media (max-width: 480px) {
+
+  .container {
+    width: calc(100% - 28px);
+  }
+
+  .cover {
+    padding: 35px 15px;
+  }
+
+  .cover h1 {
+    font-size: 46px;
+  }
+
+  .flower-container {
+    width: 260px;
+    height: 260px;
+  }
+
+  .cover-subtitle {
+    font-size: 17px;
+  }
+
+  .eyebrow {
+    font-size: 10px;
+    letter-spacing: 4px;
+  }
+
+  .intro {
+    padding: 85px 5px 55px;
+  }
+
+  .intro h2 {
+    margin-top: 30px;
+    font-size: 43px;
+  }
+
+  .intro p {
+    font-size: 16px;
+  }
+
+  .index-section {
+    margin-bottom: 55px;
+    padding: 25px 20px;
+  }
+
+  .reading-heading {
+    padding: 0 8px;
+    font-size: 12px;
+    letter-spacing: 2px;
+  }
+
+  .image-page {
+    padding: 40px 20px 25px;
+  }
+
+  .page-label {
+    margin-bottom: 30px;
+    font-size: 11px;
+  }
+
+  .text-page {
+    padding: 35px 25px;
+  }
+
+  .chapter-title {
+    font-size: 30px;
+  }
+
+  .chapter-body p {
+    font-size: 15px;
+    line-height: 1.9;
+  }
+
+  .navigation {
+    gap: 10px;
+  }
+
+  .nav-button {
+    padding: 12px 15px;
+    font-size: 13px;
+  }
+
+  .closing-section {
+    padding: 45px 22px;
+  }
+
+  .closing-section h2 {
+    font-size: 29px;
+  }
+
+  .closing-section blockquote {
+    padding: 20px 10px;
+    font-size: 19px;
+  }
+}
