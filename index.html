@@ -13,117 +13,192 @@
   <script src="script.js" defer></script>
 </head>
 <body>
-  <a class="skip-link" href="#leitura">Pular abertura e ir para a leitura</a>
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
 
-  <section class="opening" id="inicio" aria-label="Abertura do livro">
+  <section class="opening" id="inicio" aria-label="Capa do livro">
     <div class="opening-art" aria-hidden="true"></div>
     <div class="opening-grid" aria-hidden="true">
-      <span class="coord c1">0.8544104</span><span class="coord c2">0.9433981</span>
-      <span class="coord c3">0.6324555</span><span class="coord c4">0.6708204</span>
-      <span class="coord c5">0.781025</span><span class="coord c6">0.52851646</span>
-      <i class="frame frame-a"></i><i class="frame frame-b"></i><i class="frame frame-c"></i>
-      <i class="crosshair cross-a"></i><i class="crosshair cross-b"></i>
+      <span class="frame frame-a"></span>
+      <span class="frame frame-b"></span>
+      <span class="frame frame-c"></span>
+      <span class="coord c1">19°53' S</span>
+      <span class="coord c2">43°56' W</span>
+      <span class="coord c3">22:35</span>
+      <span class="coord c4">2021—2026</span>
+      <span class="coord c5">MEMÓRIA 001</span>
+      <span class="coord c6">PRESENTE</span>
+      <span class="crosshair cross-a"></span>
+      <span class="crosshair cross-b"></span>
     </div>
 
     <div class="opening-copy">
       <div class="flower-wrap" aria-hidden="true">
-        <svg class="flower" viewBox="0 0 360 460" role="img" aria-label="Flor copo-de-leite branca">
+        <svg class="flower" viewBox="0 0 300 380" xmlns="http://www.w3.org/2000/svg" role="img">
           <defs>
-            <linearGradient id="petal" x1=".1" y1=".1" x2=".9" y2="1"><stop offset="0" stop-color="#fffef8"/><stop offset=".42" stop-color="#eee9e2"/><stop offset=".78" stop-color="#c9bfc0"/><stop offset="1" stop-color="#8e777d"/></linearGradient>
-            <linearGradient id="inner" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f5e6a5"/><stop offset="1" stop-color="#a97832"/></linearGradient>
-            <linearGradient id="leaf" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#58644d"/><stop offset="1" stop-color="#17241d"/></linearGradient>
-            <filter id="soft"><feGaussianBlur stdDeviation="7"/></filter>
+            <linearGradient id="petalFill" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#fff8e8"/>
+              <stop offset=".55" stop-color="#e8d7b9"/>
+              <stop offset="1" stop-color="#b99c70"/>
+            </linearGradient>
+            <linearGradient id="stemFill" x1="0" y1="0" x2="1" y2="0">
+              <stop stop-color="#536044"/>
+              <stop offset=".5" stop-color="#a3a17b"/>
+              <stop offset="1" stop-color="#3e4937"/>
+            </linearGradient>
           </defs>
-          <ellipse cx="182" cy="222" rx="91" ry="145" fill="#eadce0" opacity=".11" filter="url(#soft)"/>
-          <path d="M176 420 C125 362 64 365 43 395 C91 431 139 438 176 420Z" fill="url(#leaf)"/>
-          <path d="M176 420 Q105 393 54 397" fill="none" stroke="#8b9675" stroke-opacity=".5" stroke-width="1.4"/>
-          <path class="stem" d="M184 410 C187 350 181 290 190 225" fill="none" stroke="#68765a" stroke-width="7" stroke-linecap="round"/>
-          <g class="petal">
-            <path d="M185 251 C119 218 91 151 119 84 C143 29 207 16 257 54 C303 88 292 158 248 211 C226 237 204 250 185 251Z" fill="url(#petal)"/>
-            <path d="M185 251 C165 196 151 135 170 76 C180 43 207 24 232 34 C197 57 190 105 199 146 C208 191 213 223 185 251Z" fill="#fffdf7" opacity=".72"/>
-            <path d="M185 251 C220 209 256 158 260 102 C262 78 253 59 236 43 C286 78 294 135 263 184 C239 222 208 245 185 251Z" fill="#b7a5a9" opacity=".45"/>
-            <path d="M183 247 C164 187 154 122 180 65" fill="none" stroke="#fff" stroke-opacity=".65" stroke-width="2"/>
-          </g>
-          <path d="M190 235 C205 192 221 142 220 93" stroke="url(#inner)" stroke-width="13" stroke-linecap="round"/>
-          <path d="M190 235 C205 192 221 142 220 93" stroke="#fff1bd" stroke-width="2" stroke-linecap="round" opacity=".7"/>
+          <path class="petal" d="M151 235 C90 184 68 105 116 42 C139 12 171 20 184 55 C211 122 192 185 151 235Z" fill="url(#petalFill)" stroke="#f8edda" stroke-width="1.5"/>
+          <path class="petal" d="M151 235 C169 155 205 82 243 88 C279 94 267 155 230 193 C205 219 177 232 151 235Z" fill="url(#petalFill)" stroke="#f8edda" stroke-width="1.5"/>
+          <path d="M151 235 C143 171 147 105 164 49" fill="none" stroke="#b99c70" stroke-width="2" opacity=".8"/>
+          <path d="M151 235 C153 285 148 326 141 375" class="stem" fill="none" stroke="url(#stemFill)" stroke-width="5" stroke-linecap="round"/>
+          <path d="M145 318 C103 285 76 298 62 332 C99 340 125 334 145 318Z" fill="#596447" opacity=".9"/>
+          <path d="M146 346 C177 310 210 315 226 345 C195 359 168 357 146 346Z" fill="#69714d" opacity=".9"/>
+          <path d="M164 49 C166 88 162 133 151 235" stroke="#fff9ed" stroke-width="1.2" fill="none" opacity=".6"/>
         </svg>
       </div>
-      <p class="micro-label"><span></span> arquivo afetivo · 2021—2026 <span></span></p>
+
+      <div class="micro-label"><span></span>UM REGISTRO DE MEMÓRIAS<span></span></div>
       <h1>Aos 22,<br><em>eu te conheci.</em></h1>
       <p class="subtitle">UMA HISTÓRIA SOBRE NÓS</p>
       <button class="enter-button" id="startReading" type="button">Ler agora <span>↗</span></button>
-      <p class="opening-foot">TOQUE PARA ENTRAR <span>⌄</span></p>
+      <p class="opening-foot">TOQUE PARA ENTRAR<span>⌄</span></p>
     </div>
-    <div class="side-index" aria-hidden="true">MEMÓRIAS / VOL. 01</div>
+    <div class="side-index">MEMÓRIAS / VOL. 01</div>
   </section>
 
-  <main class="container">
-    <header class="intro">
-      <span class="eyebrow">Um arquivo de lembranças</span>
+  <main id="conteudo" class="container">
+    <section class="intro">
+      <span class="eyebrow">UM LIVRO DE LEMBRANÇAS</span>
       <h2>Há histórias que continuam<br><em>morando na gente.</em></h2>
-      <p>Leia no seu tempo. Sem pressa.</p>
-    </header>
-
-    <section class="index-section" aria-label="Índice dos capítulos">
-      <div class="section-kicker">01 / NAVEGAÇÃO</div>
-      <h2>Índice de capítulos</h2>
-      <nav id="chapterList" class="chapter-list" aria-label="Capítulos"></nav>
+      <p>Algumas páginas guardam o que o tempo não conseguiu levar.</p>
     </section>
 
-    <section id="leitura" class="reading-section">
+    <section class="index-section" aria-labelledby="indexTitle">
+      <span class="section-kicker">ÍNDICE / 01—05</span>
+      <h2 id="indexTitle">Nossas páginas</h2>
+      <nav class="chapter-list" id="chapterList" aria-label="Índice de capítulos"></nav>
+    </section>
+
+    <section class="reading-section" id="leitura" aria-label="Leitura dos capítulos">
       <div class="reading-heading">
         <span id="chapterNumber">CAPÍTULO 01</span>
         <span id="chapterProgress">1 / 5</span>
       </div>
+
       <div class="book-page">
         <div class="image-page">
-          <span class="page-label">Uma lembrança</span>
+          <span class="page-label">ARQUIVO DE MEMÓRIA</span>
           <figure>
-            <img id="chapterImage" src="capitulo-1.png" alt="Ilustração do primeiro capítulo">
+            <img id="chapterImage" src="capitulo-1.png" alt="Imagem que acompanha o capítulo 1" onerror="this.style.display='none'">
             <figcaption id="chapterImageCaption">31 de dezembro de 2021</figcaption>
           </figure>
-          <span class="page-number">✳</span>
+          <span class="page-number" id="pageNumber">03</span>
         </div>
-        <article id="chapterText" class="text-page" aria-live="polite">
+
+        <article class="text-page" id="chapterText" aria-live="polite">
           <h2 class="chapter-title">31 de dezembro de 2021</h2>
+          <div class="chapter-body"><p>Carregando capítulo...</p></div>
         </article>
       </div>
+
       <div class="navigation">
-        <button id="previousChapter" class="nav-button secondary" type="button" disabled>← Anterior</button>
-        <button id="nextChapter" class="nav-button primary" type="button">Próximo capítulo →</button>
+        <button class="nav-button secondary" id="previousChapter" type="button">← Anterior</button>
+        <button class="nav-button primary" id="nextChapter" type="button">Próximo capítulo →</button>
       </div>
-      <div class="page-counter">REGISTRO <span id="pageNumber">03</span> <span class="counter-line"></span> 05 CAPÍTULOS</div>
+
+      <div class="page-counter">
+        <span class="counter-line"></span>
+        <span id="pageCounter">03</span>
+        <span class="counter-line"></span>
+      </div>
     </section>
 
     <section class="closing-section" id="ultima-pagina">
-      <div class="closing-mark">✿</div>
-      <p class="eyebrow">UMA ÚLTIMA PÁGINA</p>
-      <blockquote>“Eu teria saído do Éden para abrir a porta para você, se soubesse que você estava lá.”</blockquote>
-      <p class="quote-credit">— Emily Dickinson <span>(tradução livre; atribuição a confirmar)</span></p>
+      <div class="closing-mark" aria-hidden="true">✳</div>
+      <span class="eyebrow">FIM DO LIVRO / NÃO DAS MEMÓRIAS</span>
+
+      <blockquote>“That it will never come again<br>is what makes life so sweet.”</blockquote>
+      <p class="quote-credit">Emily Dickinson <span>Uma lembrança sobre a beleza do que é passageiro</span></p>
+
       <div class="dedication">
-        <p>Para você, que fez parte de tantos capítulos da minha vida.</p>
-        <p>Algumas histórias não precisam ser esquecidas para que possamos continuar.</p>
+        <p>Chegamos à última página desta história.</p>
+        <p>O que vivemos existiu. Teve beleza, teve dificuldade, teve aprendizado e deixou marcas que fazem parte de quem sou.</p>
         <p>Obrigada por ter existido na minha história.</p>
       </div>
+
       <div class="photo-placeholder">
-        <label for="photoUpload">＋ Escolher uma fotografia (PNG ou JPG)</label>
-        <input type="file" id="photoUpload" accept="image/png,image/jpeg">
+        <label for="photoUpload">Adicionar uma fotografia</label>
+        <input id="photoUpload" type="file" accept="image/*" aria-label="Escolher uma fotografia">
         <img id="photoPreview" alt="Prévia da fotografia escolhida" hidden>
-        <p>A imagem aparece apenas nesta visualização; não é enviada para um servidor.</p>
+        <p>A fotografia escolhida aparece apenas nesta visualização do navegador.</p>
       </div>
+
       <div class="music-card">
-        <p class="eyebrow">PARA OUVIR ENQUANTO LÊ</p>
-        <h3>Life Goes On</h3>
-        <p class="music-caption">Uma música para acompanhar esta história.</p>
+        <span class="eyebrow">UMA CANÇÃO PARA ESTA PÁGINA</span>
+        <h3>Para ouvir enquanto lembra</h3>
+        <p class="music-caption">Uma pausa, uma música e o tempo seguindo.</p>
         <div class="video-frame">
-          <iframe src="https://www.youtube.com/embed/-5q5mZbe3V8" title="Life Goes On — YouTube" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          <iframe src="https://www.youtube-nocookie.com/embed/-5q5mZbe3V8" title="Vídeo musical" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         </div>
-        <a class="music-link" href="https://youtu.be/-5q5mZbe3V8?si=FacrUwX2I0LL3Apb" target="_blank" rel="noopener noreferrer">Abrir no YouTube ↗</a>
+        <a class="music-link" href="https://www.youtube.com/watch?v=-5q5mZbe3V8" target="_blank" rel="noopener noreferrer">Ouvir no YouTube ↗</a>
       </div>
-      <p class="final-line">Algumas histórias permanecem em nós,<br>mesmo quando a vida nos leva adiante.</p>
-      <div class="footer-sign">FIM — POR ENQUANTO</div>
-      <button id="backToTop" class="back-button" type="button">Voltar ao início ↑</button>
+
+      <p class="final-line">Algumas histórias terminam. O que elas despertaram na gente continua encontrando novos lugares para existir.</p>
+
+      <button class="secret-trigger" id="openSecret" type="button" aria-haspopup="dialog">♡ Uma página que ficou guardada</button>
+
+      <p class="footer-sign">COM CARINHO, DE MIM PARA VOCÊ.</p>
+      <button class="back-button" id="backToTop" type="button">Voltar ao início ↑</button>
+    </section>
+
+    <section class="secret-page" id="secretPage" hidden aria-labelledby="secretTitle">
+      <div class="secret-inner">
+        <span class="eyebrow">ARQUIVO RESERVADO / 00</span>
+        <div class="closing-mark" aria-hidden="true">♡</div>
+        <h2 id="secretTitle">A parte que não foi vista</h2>
+        <p class="secret-subtitle">O que também aconteceu dentro de mim.</p>
+
+        <div class="secret-content">
+          <p>A parte que não foi abraçada. A parte difícil de olhar, proteger ou aceitar. Essa sou eu.</p>
+          <p>Talvez eu tenha escondido essa parte por muito tempo. Talvez você tenha escolhido não olhar para ela. Mas agora quero falar sobre o que também aconteceu dentro de mim.</p>
+          <p>Carreguei culpa por muito tempo. Reconheço os meus erros, mas uma história construída por duas pessoas não pode ser transformada em responsabilidade de uma só.</p>
+          <p>KKK. Não que eu seja uma grande coitada. Talvez, em algumas situações, eu tenha sido. Mas também tentei. Tentei de verdade, inclusive quando já estava cansada.</p>
+          <p>Houve momentos em que senti que estava tentando praticamente sozinha. E foi doloroso perceber que, depois de tudo, algumas partes de mim pareciam ter sido apagadas.</p>
+          <p>Eu carreguei dias difíceis, mau humor, crises, raiva, dificuldades para perdoar e coisas que ficaram sem resposta. Também precisei lidar com a ausência de pedidos de desculpas e com palavras que me machucaram.</p>
+          <p>Durante cinco anos, não vi, não beijei e não permiti que outra pessoa me tocasse. Foi uma escolha minha, uma regra que estabeleci para mim. E, mesmo quando soube de outras histórias, muitas vezes escolhi ficar em silêncio.</p>
+          <p>Às vezes me pergunto se você perdeu o respeito por mim. Mas eu também me tornei outra mulher. Nós duas estávamos aprendendo a crescer, a viver e a entender o que significava estar em uma relação.</p>
+          <p>Enquanto algumas coisas parecem seguir em frente, eu ainda me pego pensando, voltando aos mesmos acontecimentos e tentando entender o que aconteceu comigo.</p>
+          <p>Tenho descoberto coisas sobre mim, sobre meus pensamentos, minhas repetições e minha dificuldade de desligar a mente. Também tenho entendido melhor minha saúde mental. E aprendi que sofrimento não é competição: estar mal não torna menor a dor de outra pessoa.</p>
+          <p>Talvez você nunca tenha conhecido essa parte de mim. Talvez nem eu mesma a conhecesse por inteiro.</p>
+          <p>E isso não é nem metade do que eu gostaria de dizer. Às vezes, ainda tenho vontade de gritar, de perguntar, de entender por que algumas coisas aconteceram.</p>
+          <p>Mas espero conseguir me curar. Não preciso encontrar resposta para tudo. Quero aprender que lembrar não precisa significar reviver.</p>
+          <p>Apesar de tudo, ainda consigo encontrar beleza no que vivi. Mas agora também preciso aprender a olhar para mim.</p>
+          <p>Essa parte sou eu. E, dessa vez, eu não quero deixá-la de lado.</p>
+        </div>
+
+        <button class="back-button" id="closeSecretPage" type="button">Voltar ao livro ↑</button>
+      </div>
     </section>
   </main>
+
+  <footer class="container">
+    <span>AOS 22, EU TE CONHECI</span>
+    <span>FIM / VOL. 01</span>
+  </footer>
+
+  <div class="secret-dialog" id="secretDialog" role="dialog" aria-modal="true" aria-labelledby="dialogTitle" aria-describedby="dialogDescription" hidden>
+    <div class="secret-dialog-card">
+      <button class="dialog-close" id="closeSecretDialog" type="button" aria-label="Fechar">×</button>
+      <span class="closing-mark" aria-hidden="true">♡</span>
+      <h2 id="dialogTitle">Uma última lembrança</h2>
+      <p id="dialogDescription">Algumas páginas precisam de uma data para serem encontradas.</p>
+
+      <form id="secretForm">
+        <label for="secretCode">Digite a data no formato DDMMAAAA</label>
+        <input id="secretCode" name="secretCode" type="password" inputmode="numeric" autocomplete="off" maxlength="8" placeholder="DDMMAAAA" required>
+        <p class="secret-error" id="secretError" role="alert" hidden>Essa não é a data. Tente novamente.</p>
+        <button class="nav-button primary" type="submit">Abrir página</button>
+      </form>
+    </div>
+  </div>
 </body>
 </html>
